@@ -46,7 +46,7 @@
       }
     },
     "line_linked": {
-      "enable": true,
+      "enable": false,
       "distance": 300,
       "color": "#000000",
       "opacity": 0.4,
@@ -58,7 +58,7 @@
       "direction": "none",
       "random": false,
       "straight": false,
-      "out_mode": "out",
+      "out_mode": "bounce",
       "bounce": true,
       "attract": {
         "enable": false,
@@ -75,7 +75,7 @@
         "mode": "repulse"
       },
       "onclick": {
-        "enable": true,
+        "enable": false,
         "mode": "push"
       },
       "resize": true
