@@ -3,7 +3,11 @@
     padding: 0;
 }
 
-#particle-js {
-    width: 50vw;
-    height: 100vh;
+html, body {
+    height: 100%;
+}
+
+div#particle-js {
+    width: 50%;
+    height: 100%;
 }
