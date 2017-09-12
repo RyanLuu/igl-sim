@@ -7,7 +7,26 @@ html, body {
     height: 100%;
 }
 
-div#particles-js {
-    width: 50%;
+.site {
+    width: 100%;
     height: 100%;
+	display: grid;
+	background-color: #DDD;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	grid-template-areas:
+		"visual controls"
+		"visual histogram";
+}
+
+div#particles-js {
+    grid-area: visual;
+}
+
+div#controls {
+    grid-area: controls;
+}
+
+div#histogram {
+    grid-area: histogram;
 }
