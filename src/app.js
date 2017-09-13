@@ -16,7 +16,7 @@ function updateMoles(moles) {
 }
 
 function updateVolume(volume) {
-    window.pJSDom[0].pJS.canvas.h0 = volume;
+    window.pJSDom[0].pJS.canvas.h0 = parseFloat(volume) * window.pJSDom[0].pJS.canvas.h;
 }
 
 function highlightParticle() {
