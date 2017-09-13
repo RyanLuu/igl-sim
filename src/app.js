@@ -18,11 +18,12 @@ function updateMoles(moles) {
 function updateVolume(volume) {
     var new_h0 = parseFloat(volume) * window.pJSDom[0].pJS.canvas.h;
     if (new_h0 > window.pJSDom[0].pJS.canvas.h0) {
-        for (particle in window.pJSDom[0].pJS.particles.array) {
-            particle.y = Math.max(particle.y, new_h0 + particle.radius);
+        for (var i = 0; i < window.pJSDom[0].pJS.particles.array.length; i++) {
+            var p = window.pJSDom[0].pJS.particles.array[i];
+            p.y = Math.max(p.y, new_h0 + p.radius);
         }
     }
-    window.pJSDom[0].pJS.canvas.h0 = new_h0
+    window.pJSDom[0].pJS.canvas.h0 = new_h0;
 }
 
 function highlightParticle() {
