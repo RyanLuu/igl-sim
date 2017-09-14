@@ -31,10 +31,6 @@ div#histogram {
     grid-area: histogram;
 }
 
-div#controls div {
-    display: inline-block;
-}
-
 .slider {
     -webkit-appearance: none;
     width: 100%;
