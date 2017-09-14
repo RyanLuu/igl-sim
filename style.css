@@ -21,14 +21,22 @@ html, body {
 
 div#particles-js {
     grid-area: visual;
+    margin: 10px;
+    background-color: white;
 }
 
 div#controls {
     grid-area: controls;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
 }
 
 div#histogram {
     grid-area: histogram;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
 }
 
 .slider {
