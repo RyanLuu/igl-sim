@@ -1,7 +1,7 @@
 particlesJS.load('particles-js', 'assets/particles.json', function() {
   console.log('callback - particles.js config loaded');
   highlightParticle();
-  setInterval(pollPressure(), 1000)
+  setInterval(pollPressure, 1000)
 });
 
 function updateMoles(moles) {
@@ -42,5 +42,5 @@ function pollPressure() {
     var dt = now - t_last;
     console.log(window.pJSDom[0].pJS.pressure / dt);
     window.pJSDom[0].pJS.pressure = 0;
-    t_last = Date.now();
+    t_last = now;
 }
