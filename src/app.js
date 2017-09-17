@@ -1,6 +1,7 @@
 particlesJS.load('particles-js', 'assets/particles.json', function() {
   console.log('callback - particles.js config loaded');
   highlightParticle();
+  setTimeout(pollPressure())
 });
 
 function updateMoles(moles) {
@@ -32,4 +33,14 @@ function updateTemperature(temperature) {
 
 function highlightParticle() {
     window.pJSDom[0].pJS.particles.array[0].color={value:"#FF0000",rgb:{r:255,g:0,b:0}}
+}
+
+var t_last = Date.now();
+
+function pollPressure() {
+    var now = Date.now();
+    var dt = now - t_last;
+    console.log(window.pJSDom[0].pJS.pressure / dt);
+    window.pJSDom[0].pJS.pressure = 0;
+    t_last = Date.now();
 }
