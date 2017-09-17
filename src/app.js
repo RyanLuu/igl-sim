@@ -1,7 +1,7 @@
 particlesJS.load('particles-js', 'assets/particles.json', function() {
   console.log('callback - particles.js config loaded');
   highlightParticle();
-  setTimeout(pollPressure())
+  setInterval(pollPressure(), 1000)
 });
 
 function updateMoles(moles) {
