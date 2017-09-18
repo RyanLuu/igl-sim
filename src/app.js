@@ -77,4 +77,3 @@ function pollPressure() {
     window.pJSDom[0].pJS.pressure = 0;
     t_last = now;
 }
-/
