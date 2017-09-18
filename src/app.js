@@ -4,11 +4,11 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
   setInterval(pollPressure, 1000)
 
   var canvas = document.getElementById("pressure-graph");
-  canvas.style.width = "100%";
-  canvas.style.height= "100%";
+  //canvas.style.width = "100%";
+  //canvas.style.height= "100%";
   var context = canvas.getContext("2d"),
-	  width = canvas.width = canvas.offsetWidth,
-	  height = canvas.width = canvas.offsetHeight;
+	  width = canvas.width = document.getElementById("pressure").width,
+	  height = canvas.width = document.getElementById("pressure").height;
 
   update();
 
