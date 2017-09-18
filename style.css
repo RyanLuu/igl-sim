@@ -16,7 +16,7 @@ html, body {
 	grid-template-rows: 1fr 1fr;
 	grid-template-areas:
 		"visual controls"
-		"visual histogram";
+		"visual pressure";
 }
 
 div#particles-js {
@@ -32,8 +32,8 @@ div#controls {
     background-color: white;
 }
 
-div#histogram {
-    grid-area: histogram;
+div#pressure {
+    grid-area: pressure;
     margin: 10px;
     padding: 10px;
     background-color: white;
