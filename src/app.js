@@ -3,10 +3,12 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
   highlightParticle();
   setInterval(pollPressure, 1000)
 
-  var canvas = document.getElementById("pressure-graph"),
-	  context = canvas.getContext("2d"),
-	  width = canvas.width,
-	  height = canvas.height;
+  var canvas = document.getElementById("pressure-graph");
+  canvas.style.width = "100%";
+  canvas.style.height= "100%";
+  var context = canvas.getContext("2d"),
+	  width = canvas.offsetWidth,
+	  height = canvas.offsetHeight;
 
   update();
 
@@ -75,3 +77,4 @@ function pollPressure() {
     window.pJSDom[0].pJS.pressure = 0;
     t_last = now;
 }
+/
