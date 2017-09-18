@@ -69,6 +69,9 @@ function pollPressure() {
     console.log(pressure);
     if (!isNaN(pressure)) {
         pressure_history.push(pressure);
+        if (pressure_history.length > 50) {
+            pressure_history.splice(0, 1);
+        }
     }
     window.pJSDom[0].pJS.pressure = 0;
     t_last = now;
