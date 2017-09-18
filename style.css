@@ -57,8 +57,3 @@ div#pressure {
 .slider:hover {
     opacity: 1;
 }
-
-#pressure-graph {
-    width: 100%;
-    height: 100%;
-}
