@@ -12,13 +12,13 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 
   context.strokeStyle = "#000";
   function update() {
-      var max_pressure = Math.max.apply(null, history);
-      for (var i = 1; i < history.length; i++) {
+      var max_pressure = Math.max.apply(null, pressure_history);
+      for (var i = 1; i < pressure_history.length; i++) {
           context.beginPath();
-          var x0 = width * ((i - 1) / history.length);
-          var y0 = height * (history[i - 1] / max_pressure);
-          var x1 = width * (i / history.length);
-          var y1 = height * (history[i] / max_pressure);
+          var x0 = width * ((i - 1) / pressure_history.length);
+          var y0 = height * (pressure_history[i - 1] / max_pressure);
+          var x1 = width * (i / pressure_history.length);
+          var y1 = height * (pressure_history[i] / max_pressure);
           context.moveTo(x0, y0);
           context.lineTo(x1, y1);
           context.stroke();
@@ -58,7 +58,7 @@ function highlightParticle() {
     window.pJSDom[0].pJS.particles.array[0].color={value:"#FF0000",rgb:{r:255,g:0,b:0}}
 }
 
-var history = [];
+var pressure_history = [];
 var t_last = Date.now();
 
 function pollPressure() {
@@ -67,7 +67,7 @@ function pollPressure() {
     var pressure = window.pJSDom[0].pJS.pressure / dt;
     console.log(pressure);
     if (!isNaN(pressure)) {
-        history.push(pressure);
+        pressure_history.push(pressure);
     }
     window.pJSDom[0].pJS.pressure = 0;
     t_last = now;
