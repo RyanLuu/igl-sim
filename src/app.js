@@ -14,16 +14,15 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
   function update() {
       context.clearRect(0, 0, width, height);
       var max_pressure = Math.max.apply(null, pressure_history);
+      context.beginPath();
+      context.moveTo(0, y0);
+      var y0 = height * (1 - pressure_history[0] / max_pressure);
       for (var i = 1; i < pressure_history.length; i++) {
-          context.beginPath();
-          var x0 = width * ((i - 1) / pressure_history.length);
-          var y0 = height * (1 - pressure_history[i - 1] / max_pressure);
           var x1 = width * (i / pressure_history.length);
           var y1 = height * (1 - pressure_history[i] / max_pressure);
-          context.moveTo(x0, y0);
           context.lineTo(x1, y1);
-          context.stroke();
       }
+      context.stroke();
       requestAnimationFrame(update);
   }
 });
