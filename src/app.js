@@ -7,8 +7,8 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
   //canvas.style.width = "100%";
   //canvas.style.height= "100%";
   var context = canvas.getContext("2d"),
-	  width = canvas.width = document.getElementById("pressure").width,
-	  height = canvas.width = document.getElementById("pressure").height;
+	  width = canvas.width = document.getElementById("pressure").innerWidth,
+	  height = canvas.width = document.getElementById("pressure").innerHeight;
 
   update();
 
