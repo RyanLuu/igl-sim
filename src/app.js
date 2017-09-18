@@ -12,6 +12,7 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 
   context.strokeStyle = "#000";
   function update() {
+      context.clearRect(0, 0, width, height);
       var max_pressure = Math.max.apply(null, pressure_history);
       for (var i = 1; i < pressure_history.length; i++) {
           context.beginPath();
