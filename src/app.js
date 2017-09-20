@@ -43,7 +43,7 @@ function updateMoles(moles) {
     if (moles > 0) {
         highlightParticle();
     }
-    document.getElementById("moles-label").innerHTML = "Moles = " + round(moles / 50, 2) + " mol";
+    document.getElementById("moles-label").innerHTML = round(moles / 50, 2);
 }
 
 function updateVolume(volume) {
@@ -55,13 +55,13 @@ function updateVolume(volume) {
         }
     }
     window.pJSDom[0].pJS.canvas.h0 = new_h0;
-    document.getElementById("volume-label").innerHTML = "Volume = " + round(volume * 30, 1) + " L";
+    document.getElementById("volume-label").innerHTML = round(volume * 30, 1);
 
 }
 
 function updateTemperature(temperature) {
     window.pJSDom[0].pJS.particles.move.speed = temperature;
-    document.getElementById("temperature-label").innerHTML = "Temperature = " + Math.round(temperature * 20) + " K";
+    document.getElementById("temperature-label").innerHTML = Math.round(temperature * 20);
 }
 
 function highlightParticle() {

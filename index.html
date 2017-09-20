@@ -12,19 +12,19 @@
 		<div id="controls">
 			<div class="slider-container">
 				<input id="volume" class="slider" type="range" min="0.4" max="1.0" step=".001" value="1.0" oninput="updateVolume(this.value)">
-				<label id="volume-label">Volume = 30.0 L</label>
+				<label>Volume = <span id="volume-label">30.0</span> L</label>
 			</div>
 			<div class="slider-container">
 				<input id="moles" class="slider" type="range" min="10" max="150" step="1" value="50" oninput="updateMoles(this.value)">
-				<label id="moles-label">Moles = 50 mol</label>
+				<label>Moles = <span id="moles-label">1</span> mol</label>
 			</div>
 			<div class="slider-container">
 				<input id="temperature" class="slider" type="range" min="10" max="30" step=".01" value="15" oninput="updateTemperature(this.value)">
-				<label id="temperature-label">Temperature = 300 K</label>
+				<label>Temperature = <span id="temperature-label">300</span> K</label>
 			</div>
 		</div>
 		<div id="pressure">
-			<label id="pressure-label">Pressure &asymp; </label>
+			<label>Pressure &asymp; <span id="pressure-label">0.82</span> atm</label>
 			<canvas id="pressure-graph"></canvas>
 		</div>
 	</div>
