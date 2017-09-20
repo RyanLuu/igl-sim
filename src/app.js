@@ -15,17 +15,19 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
   context.strokeStyle = "#000";
   function update() {
       context.clearRect(0, 0, width, height);
-      var max_pressure = Math.max.apply(null, pressure_history);
+
+      var filtered_values = filter(pressure_history, mean, 3);
+      var max_pressure = Math.max.apply(null, filtered_values);
       context.beginPath();
-      var y0 = height * (1 - ((pressure_history[0] + pressure_history[1]) / 2) / max_pressure);
-      context.moveTo(0, y0);
-      for (var i = 1; i < pressure_history.length - 1; i++) {
-          var x1 = width * (i / pressure_history.length);
-          var y1 = height * (1 - ((pressure_history[i-1] + pressure_history[i] + pressure_history[i+1]) / 3) / max_pressure);
-          context.lineTo(x1, y1);
+      for (var i = 0; i < pressure_history.length; i++) {
+          var x = width * (i / pressure_history.length);
+          var y = height * (1 - filtered_values[i] / max_pressure);
+
+          if (i == 0) {
+              context.moveTo(x, y)
+          }
+          context.lineTo(x, y);
       }
-      var y2 = height * (1 - ((pressure_history[pressure_history.length-2] + pressure_history[pressure_history.length-1]) / 2) / max_pressure);
-      context.lineTo(width, y2);
       context.stroke();
       requestAnimationFrame(update);
   }
@@ -76,4 +78,40 @@ function pollPressure() {
     }
     window.pJSDom[0].pJS.pressure = 0;
     t_last = now;
+}
+
+function filter(a, f, w) {
+    if (w % 2 == 0 || !Number.isInteger(w)) {
+        console.error("Invalid width passed into filter: " + w);
+        return a;
+    }
+
+    ret = [];
+
+    for (var i = 0; i < a.length; i++) {
+        var sliced = a.slice(Math.max(0, i - Math.floor(w/2)), Math.min(a.length - 1, i + Math.floor(w/2)));
+        ret.push(f(sliced))
+    }
+
+    return ret;
+}
+
+function mean(values) {
+    var total = 0;
+    for (var i = 0; i < values.length; i++) {
+        total += values[i];
+    }
+    return total / values.length;
+}
+
+function median(values) {
+
+    values.sort( function(a,b) {return a - b;} );
+
+    var half = Math.floor(values.length/2);
+
+    if(values.length % 2)
+        return values[half];
+    else
+        return (values[half-1] + values[half]) / 2.0;
 }
