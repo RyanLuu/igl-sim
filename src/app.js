@@ -43,6 +43,7 @@ function updateMoles(moles) {
     if (moles > 0) {
         highlightParticle();
     }
+    document.getElementById("moles-label").innerHTML = "Moles = " + Math.round(moles / 50) + " mol";
 }
 
 function updateVolume(volume) {
