@@ -58,7 +58,7 @@ function updateVolume(volume) {
 
 function updateTemperature(temperature) {
     window.pJSDom[0].pJS.particles.move.speed = temperature;
-    document.getElementById("temperature-label").innerHTML = "Tempurate = " + (temperature * 20) + " K";
+    document.getElementById("temperature-label").innerHTML = "Tempurate = " + Math.round(temperature * 20) + " K";
 }
 
 function highlightParticle() {
