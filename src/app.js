@@ -67,8 +67,8 @@ function updateTemperature(temperature) {
 }
 
 function updatePressureLabel() {
-    var V = parseInt(document.getElementById("volume-label").innerHTML);
-    var n = parseInt(document.getElementById("moles-label").innerHTML);
+    var V = parseFloat(document.getElementById("volume-label").innerHTML);
+    var n = parseFloat(document.getElementById("moles-label").innerHTML);
     var T = parseInt(document.getElementById("temperature-label").innerHTML);
     var R = .08206;
     document.getElementById("pressure-label").innerHTML = round(n * R * T / V, 2);
