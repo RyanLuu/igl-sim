@@ -54,6 +54,8 @@ function updateVolume(volume) {
         }
     }
     window.pJSDom[0].pJS.canvas.h0 = new_h0;
+    document.getElementById("volume-label").innerHTML = "Volume = " + round(volume * 30, 1) + " L";
+
 }
 
 function updateTemperature(temperature) {
@@ -115,4 +117,9 @@ function median(values) {
         return values[half];
     else
         return (values[half-1] + values[half]) / 2.0;
+}
+
+function round(value, precision) {
+    var multiplier = Math.pow(10, precision || 0);
+    return Math.round(value * multiplier) / multiplier;
 }
