@@ -1,7 +1,7 @@
 particlesJS.load('particles-js', 'assets/particles.json', function() {
   console.log('callback - particles.js config loaded');
   highlightParticle();
-  setInterval(pollPressure, 50)
+  setInterval(pollPressure, 500)
 
   var canvas = document.getElementById("pressure-graph");
   //canvas.style.width = "100%";
@@ -16,7 +16,7 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
   function update() {
       context.clearRect(0, 0, width, height);
 
-      var filtered_values = filter(pressure_history, median, 7);
+      var filtered_values = filter(pressure_history, mean, 5);
       var max_pressure = Math.max.apply(null, filtered_values);
       context.beginPath();
       for (var i = 0; i < pressure_history.length; i++) {
