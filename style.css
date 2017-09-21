@@ -46,7 +46,7 @@ div#pressure {
 
 .slider {
     -webkit-appearance: none;
-    flex-basis: 1;
+    flex: 1;
     height: 25px;
     background: #d3d3d3;
     outline: none;
