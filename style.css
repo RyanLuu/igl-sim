@@ -41,11 +41,12 @@ div#pressure {
 
 .slider-container {
     margin: 16px 0px;
+    display: flex;
 }
 
 .slider {
     -webkit-appearance: none;
-    width: 100%;
+    flex-basis: 1;
     height: 25px;
     background: #d3d3d3;
     outline: none;
