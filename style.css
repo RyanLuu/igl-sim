@@ -58,3 +58,7 @@ div#pressure {
 .slider:hover {
     opacity: 1;
 }
+
+.slider-label {
+    flex-basis: 160px;
+}

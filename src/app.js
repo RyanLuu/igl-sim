@@ -35,9 +35,9 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 
 function setMoles(moles) {
     if (moles > window.pJSDom[0].pJS.particles.array.length) {
-        window.pJSDom[0].pJS.fn.modes.pushParticles(moles * 10 - window.pJSDom[0].pJS.particles.array.length)
+        window.pJSDom[0].pJS.fn.modes.pushParticles(Math.round(moles * 10 - window.pJSDom[0].pJS.particles.array.length))
     } else if (moles < window.pJSDom[0].pJS.particles.array.length) {
-        window.pJSDom[0].pJS.fn.modes.removeParticles(window.pJSDom[0].pJS.particles.array.length - moles * 10)
+        window.pJSDom[0].pJS.fn.modes.removeParticles(Math.round(window.pJSDom[0].pJS.particles.array.length - moles * 10))
     }
 
     if (moles > 0) {
@@ -59,7 +59,7 @@ function setVolume(volume) {
 }
 
 function setTemperature(temperature) {
-    window.pJSDom[0].pJS.particles.move.speed = temperature / 20;
+    window.pJSDom[0].pJS.particles.move.speed = temperature * 0.08;
     document.getElementById("temperature-label").innerHTML = temperature;
 }
 

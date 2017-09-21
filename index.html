@@ -13,22 +13,22 @@
 			<div class="slider-container">
 				<input type="radio" name="dep-var" value="pressure" checked>
 				<input id="volume" class="slider" type="range" min="0.82" max="100.00" step=".01" value="1.00" oninput="setPressure(this.value)">
-				<label>Pressure = <span id="pressure-label">1.00</span> atm</label>
+				<label>Pressure = <span class="slider-label" id="pressure-label">1.00</span> atm</label>
 			</div>
 			<div class="slider-container">
 				<input type="radio" name="dep-var" value="volume">
-				<input id="volume" class="slider" type="range" min="1.22" max="40.0" step=".01" value="22.4" oninput="setVolume(this.value)">
-				<label>Volume = <span id="volume-label">30.0</span> L</label>
+				<input id="volume" class="slider" type="range" min="2.24" max="40.0" step=".01" value="22.4" oninput="setVolume(this.value)">
+				<label>Volume = <span class="slider-label" id="volume-label">30.0</span> L</label>
 			</div>
 			<div class="slider-container">
 				<input type="radio" name="dep-var" value="moles">
 				<input id="moles" class="slider" type="range" min="1" max="10" step=".01" value="1" oninput="setMoles(this.value)">
-				<label>Moles = <span id="moles-label">1</span> mol</label>
+				<label>Moles = <span class="slider-label" id="moles-label">1</span> mol</label>
 			</div>
 			<div class="slider-container">
 				<input type="radio" name="dep-var" value="temperature">
 				<input id="temperature" class="slider" type="range" min="25" max="400" step="1" value="273" oninput="setTemperature(this.value)">
-				<label>Temperature = <span id="temperature-label">300</span> K</label>
+				<label>Temperature = <span class="slider-label" id="temperature-label">300</span> K</label>
 			</div>
 		</div>
 		<div id="pressure">
