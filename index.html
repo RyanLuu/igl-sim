@@ -11,23 +11,23 @@
 		<div id="particles-js"></div>
 		<div id="controls">
 			<div class="slider-container">
-				<input type="radio" name="fixed" value="pressure" checked>
-				<input id="volume" class="slider" type="range" min="0.5" max="12.0" step=".001" value="0.82" oninput="">
-				<label>Pressure = <span id="pressure-label">0.82</span> atm</label>
+				<input type="radio" name="dep-var" value="pressure" checked>
+				<input id="volume" class="slider" type="range" min="0.82" max="100.00" step=".01" value="1.00" oninput="setPressure(this.value)">
+				<label>Pressure = <span id="pressure-label">1.00</span> atm</label>
 			</div>
 			<div class="slider-container">
-				<input type="radio" name="fixed" value="volume">
-				<input id="volume" class="slider" type="range" min="0.4" max="1.0" step=".001" value="1.0" oninput="updateVolume(this.value)">
+				<input type="radio" name="dep-var" value="volume">
+				<input id="volume" class="slider" type="range" min="1.22" max="40.0" step=".01" value="22.4" oninput="setVolume(this.value)">
 				<label>Volume = <span id="volume-label">30.0</span> L</label>
 			</div>
 			<div class="slider-container">
-				<input type="radio" name="fixed" value="moles">
-				<input id="moles" class="slider" type="range" min="10" max="150" step="1" value="50" oninput="updateMoles(this.value)">
+				<input type="radio" name="dep-var" value="moles">
+				<input id="moles" class="slider" type="range" min="1" max="10" step=".01" value="1" oninput="setMoles(this.value)">
 				<label>Moles = <span id="moles-label">1</span> mol</label>
 			</div>
 			<div class="slider-container">
-				<input type="radio" name="fixed" value="temperature">
-				<input id="temperature" class="slider" type="range" min="10" max="30" step=".01" value="15" oninput="updateTemperature(this.value)">
+				<input type="radio" name="dep-var" value="temperature">
+				<input id="temperature" class="slider" type="range" min="25" max="400" step="1" value="273" oninput="setTemperature(this.value)">
 				<label>Temperature = <span id="temperature-label">300</span> K</label>
 			</div>
 		</div>
