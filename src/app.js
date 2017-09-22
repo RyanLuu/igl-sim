@@ -58,6 +58,7 @@ function sliderUpdate(slider) {
         document.getElementById(dep_var_name + "-slider").value = dep_var;
     } else { // otherwise revert to previous variables
         vars = prev_vars;
+        document.getElementById(ind_var_name + "-slider").value = vars[ind_var_name];
     }
     updateVar(ind_var_name);
     updateVar(dep_var_name);
