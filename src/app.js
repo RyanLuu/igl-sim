@@ -33,9 +33,14 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
   }
 });
 
+function sliderUpdate(value, f) {
+    f(value);
+
+    updateDependentVar();
+}
+
 function setPressure(pressure) {
     document.getElementById("pressure-label").innerHTML = pressure;
-    updateDependentVar();
 }
 
 function setMoles(moles) {
@@ -50,7 +55,6 @@ function setMoles(moles) {
         highlightParticle();
     }
     document.getElementById("moles-label").innerHTML = moles;
-    updateDependentVar();
 }
 
 function setVolume(volume) {
@@ -63,13 +67,11 @@ function setVolume(volume) {
     }
     window.pJSDom[0].pJS.canvas.h0 = new_h0;
     document.getElementById("volume-label").innerHTML = volume;
-    updateDependentVar();
 }
 
 function setTemperature(temperature) {
     window.pJSDom[0].pJS.particles.move.speed = temperature * 0.05 + 12;
     document.getElementById("temperature-label").innerHTML = temperature;
-    updateDependentVar();
 }
 
 function updateDependentVar() {
