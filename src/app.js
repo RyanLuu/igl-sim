@@ -45,6 +45,7 @@ function setMoles(moles) {
         highlightParticle();
     }
     document.getElementById("moles-label").innerHTML = moles;
+    updateDependentVar();
 }
 
 function setVolume(volume) {
@@ -84,7 +85,7 @@ function calculateDependentVar(dep_var) {
     var V = parseFloat(document.getElementById("volume-label").innerHTML);
     var n = parseFloat(document.getElementById("moles-label").innerHTML);
     var R = .08206;
-    var T = parseInt(document.getElementById("temperature-label").innerHTML);
+    var T = parseFloat(document.getElementById("temperature-label").innerHTML);
 
     switch(dep_var) {
         case "pressure":
