@@ -49,19 +49,22 @@ window.addEventListener('load',
 function sliderUpdate(slider) {
     var prev_vars = vars;
     var value = slider.value;
-    var ind_var_name = slider.id.slice(0, -7);
-    vars[ind_var_name] = value; // update independent variable
-    var dep_var_name = getDependentVar();
-    var dep_var = calculateDependentVar(dep_var_name); // calculte dependent variable
-    if (dep_var >= slider.min && dep_var <= slider.max) { // update dependent variable if within bounds
-        vars[dep_var_name] = dep_var;
-        document.getElementById(dep_var_name + "-slider").value = dep_var;
+    var iv_name = slider.id.slice(0, -7);
+    var dv_name = getDependentVar();
+    var iv_slider = slider;
+    var dv_slider = document.getElementById(dv_name + "-slider");
+
+    vars[iv_name] = value; // update independent variable
+    var dv = calculateDependentVar(dv_name); // calculte dependent variable
+    if (dv >= dv_slider.min && dv <= dv_slider.max) { // update dependent variable if within bounds
+        vars[dv_name] = dv;
+        document.getElementById(dv_name + "-slider").value = dv;
     } else { // otherwise revert to previous variables
         vars = prev_vars;
-        document.getElementById(ind_var_name + "-slider").value = vars[ind_var_name];
+        iv_slider.value = vars[iv_name];
     }
-    updateVar(ind_var_name);
-    updateVar(dep_var_name);
+    updateVar(iv_name);
+    updateVar(dv_name);
     updateLabels();
 }
 
