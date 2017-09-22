@@ -124,11 +124,11 @@ function updateVar(name) {
 }
 
 function calculateDependentVar(dep_var) {
-    var P = parseFloat(document.getElementById("pressure-label").innerHTML);
-    var V = parseFloat(document.getElementById("volume-label").innerHTML);
-    var n = parseFloat(document.getElementById("moles-label").innerHTML);
+    var P = vars.pressure;
+    var V = vars.volume;
+    var n = vars.moles;
     var R = .08206;
-    var T = parseFloat(document.getElementById("temperature-label").innerHTML);
+    var T = vars.temperature;
 
     switch(dep_var) {
         case "pressure":
