@@ -34,12 +34,17 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
     */
 });
 
-var vars = {
-    pressure: document.getElementById("pressure-slider").value,
-    volume: document.getElementById("volume-slider").value,
-    moles: document.getElementById("moles-slider").value,
-    temperature: document.getElementById("temperature-slider").value
-};
+var vars;
+
+window.addEventListener('load',
+    function() {
+        vars = {
+            pressure: document.getElementById("pressure-slider").value,
+            volume: document.getElementById("volume-slider").value,
+            moles: document.getElementById("moles-slider").value,
+            temperature: document.getElementById("temperature-slider").value
+        };
+    }, false);
 
 function sliderUpdate(slider) {
     var prev_vars = vars;
