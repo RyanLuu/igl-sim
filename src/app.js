@@ -31,182 +31,181 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
       context.stroke();
       requestAnimationFrame(update);
   }
-});
 
-function sliderUpdate(value, f) {
-    f(value);
-
-    updateDependentVar();
-}
-
-function setPressure(pressure) {
-    document.getElementById("pressure-label").innerHTML = round(pressure, 2);
-}
-
-function setMoles(moles) {
-    var d_moles = Math.round(moles * 10 - window.pJSDom[0].pJS.particles.array.length);
-    if (d_moles > 0) {
-        window.pJSDom[0].pJS.fn.modes.pushParticles(d_moles)
-    } else if (d_moles < 0) {
-        window.pJSDom[0].pJS.fn.modes.removeParticles(-d_moles)
+    function sliderUpdate(value, f) {
+        f(value);
+        updateDependentVar();
     }
 
-    if (window.pJSDom[0].pJS.particles.array.length > 0) {
-        highlightParticle();
+    function setPressure(pressure) {
+        document.getElementById("pressure-label").innerHTML = round(pressure, 2);
     }
-    document.getElementById("moles-label").innerHTML = round(moles, 2);
-}
 
-function setVolume(volume) {
-    var new_h0 = (1 - parseFloat(volume) / 40) * window.pJSDom[0].pJS.canvas.h;
-    if (new_h0 > window.pJSDom[0].pJS.canvas.h0) {
-        for (var i = 0; i < window.pJSDom[0].pJS.particles.array.length; i++) {
-            var p = window.pJSDom[0].pJS.particles.array[i];
-            p.y = Math.max(p.y, new_h0 + p.radius);
+    function setMoles(moles) {
+        var d_moles = Math.round(moles * 10 - window.pJSDom[0].pJS.particles.array.length);
+        if (d_moles > 0) {
+            window.pJSDom[0].pJS.fn.modes.pushParticles(d_moles)
+        } else if (d_moles < 0) {
+            window.pJSDom[0].pJS.fn.modes.removeParticles(-d_moles)
+        }
+
+        if (window.pJSDom[0].pJS.particles.array.length > 0) {
+            highlightParticle();
+        }
+        document.getElementById("moles-label").innerHTML = round(moles, 2);
+    }
+
+    function setVolume(volume) {
+        var new_h0 = (1 - parseFloat(volume) / 40) * window.pJSDom[0].pJS.canvas.h;
+        if (new_h0 > window.pJSDom[0].pJS.canvas.h0) {
+            for (var i = 0; i < window.pJSDom[0].pJS.particles.array.length; i++) {
+                var p = window.pJSDom[0].pJS.particles.array[i];
+                p.y = Math.max(p.y, new_h0 + p.radius);
+            }
+        }
+        window.pJSDom[0].pJS.canvas.h0 = new_h0;
+        document.getElementById("volume-label").innerHTML = round(volume, 2);
+    }
+
+    function setTemperature(temperature) {
+        window.pJSDom[0].pJS.particles.move.speed = temperature * 0.05 + 12;
+        document.getElementById("temperature-label").innerHTML = Math.round(temperature);
+    }
+
+    function updateDependentVar() {
+        var dep_var = getDependentVar();
+        var set_to = calculateDependentVar(dep_var);
+        switch (dep_var) {
+            case "pressure":
+                setPressure(set_to);
+                break;
+            case "volume":
+                setVolume(set_to);
+                break;
+            case "moles":
+                setMoles(set_to);
+                break;
+            case "temperature":
+                setTemperature(set_to);
+                break;
+            default:
+                console.error("Illegal dependent variable: " + dep_var);
+                break;
+        }
+        document.getElementById(dep_var + "-slider").value = set_to;
+    }
+
+    function calculateDependentVar(dep_var) {
+        var P = parseFloat(document.getElementById("pressure-label").innerHTML);
+        var V = parseFloat(document.getElementById("volume-label").innerHTML);
+        var n = parseFloat(document.getElementById("moles-label").innerHTML);
+        var R = .08206;
+        var T = parseFloat(document.getElementById("temperature-label").innerHTML);
+
+        switch(dep_var) {
+            case "pressure":
+                return n * R * T / V;
+                break;
+            case "volume":
+                return n * R * T / P;
+                break;
+            case "moles":
+                return P * V / R / T;
+                break;
+            case "temperature":
+                return P * V / n / R;
+                break;
         }
     }
-    window.pJSDom[0].pJS.canvas.h0 = new_h0;
-    document.getElementById("volume-label").innerHTML = round(volume, 2);
-}
 
-function setTemperature(temperature) {
-    window.pJSDom[0].pJS.particles.move.speed = temperature * 0.05 + 12;
-    document.getElementById("temperature-label").innerHTML = Math.round(temperature);
-}
-
-function updateDependentVar() {
-    var dep_var = getDependentVar();
-    var set_to = calculateDependentVar(dep_var);
-    switch (dep_var) {
-        case "pressure":
-            setPressure(set_to);
-            break;
-        case "volume":
-            setVolume(set_to);
-            break;
-        case "moles":
-            setMoles(set_to);
-            break;
-        case "temperature":
-            setTemperature(set_to);
-            break;
-        default:
-            console.error("Illegal dependent variable: " + dep_var);
-            break;
+    /*function updatePressureLabel() {
+        var V = parseFloat(document.getElementById("volume-label").innerHTML);
+        var n = parseFloat(document.getElementById("moles-label").innerHTML);
+        var T = parseInt(document.getElementById("temperature-label").innerHTML);
+        var R = .08206;
+        document.getElementById("pressure-label").innerHTML = round(n * R * T / V, 2);
     }
-    document.getElementById(dep_var + "-slider").value = set_to;
-}
+    */
 
-function calculateDependentVar(dep_var) {
-    var P = parseFloat(document.getElementById("pressure-label").innerHTML);
-    var V = parseFloat(document.getElementById("volume-label").innerHTML);
-    var n = parseFloat(document.getElementById("moles-label").innerHTML);
-    var R = .08206;
-    var T = parseFloat(document.getElementById("temperature-label").innerHTML);
-
-    switch(dep_var) {
-        case "pressure":
-            return n * R * T / V;
-            break;
-        case "volume":
-            return n * R * T / P;
-            break;
-        case "moles":
-            return P * V / R / T;
-            break;
-        case "temperature":
-            return P * V / n / R;
-            break;
-    }
-}
-
-/*function updatePressureLabel() {
-    var V = parseFloat(document.getElementById("volume-label").innerHTML);
-    var n = parseFloat(document.getElementById("moles-label").innerHTML);
-    var T = parseInt(document.getElementById("temperature-label").innerHTML);
-    var R = .08206;
-    document.getElementById("pressure-label").innerHTML = round(n * R * T / V, 2);
-}
-*/
-
-function highlightParticle() {
-    window.pJSDom[0].pJS.particles.array[0].color={value:"#FF0000",rgb:{r:255,g:0,b:0}}
-}
-
-var pressure_history = Array.apply(null, Array(50)).map(Number.prototype.valueOf, 0);
-var t_last = Date.now();
-
-function pollPressure() {
-    var now = Date.now();
-    var dt = now - t_last;
-    var pressure = window.pJSDom[0].pJS.pressure / dt;
-    console.log(pressure);
-    if (!isNaN(pressure)) {
-        pressure_history.push(pressure);
-        pressure_history.splice(0, 1);
-    }
-    window.pJSDom[0].pJS.pressure = 0;
-    t_last = now;
-}
-
-function filter(a, f, w) {
-    if (w % 2 == 0 || !Number.isInteger(w)) {
-        console.error("Invalid width passed into filter: " + w);
-        return a;
+    function highlightParticle() {
+        window.pJSDom[0].pJS.particles.array[0].color={value:"#FF0000",rgb:{r:255,g:0,b:0}}
     }
 
-    ret = [];
+    var pressure_history = Array.apply(null, Array(50)).map(Number.prototype.valueOf, 0);
+    var t_last = Date.now();
 
-    for (var i = 0; i < a.length; i++) {
-        var sliced = a.slice(Math.max(0, i - Math.floor(w/2)), Math.min(a.length - 1, i + Math.floor(w/2)));
-        ret.push(f(sliced))
+    function pollPressure() {
+        var now = Date.now();
+        var dt = now - t_last;
+        var pressure = window.pJSDom[0].pJS.pressure / dt;
+        console.log(pressure);
+        if (!isNaN(pressure)) {
+            pressure_history.push(pressure);
+            pressure_history.splice(0, 1);
+        }
+        window.pJSDom[0].pJS.pressure = 0;
+        t_last = now;
     }
 
-    return ret;
-}
+    function filter(a, f, w) {
+        if (w % 2 == 0 || !Number.isInteger(w)) {
+            console.error("Invalid width passed into filter: " + w);
+            return a;
+        }
 
-function mean(values) {
-    var total = 0;
-    for (var i = 0; i < values.length; i++) {
-        total += values[i];
+        ret = [];
+
+        for (var i = 0; i < a.length; i++) {
+            var sliced = a.slice(Math.max(0, i - Math.floor(w/2)), Math.min(a.length - 1, i + Math.floor(w/2)));
+            ret.push(f(sliced))
+        }
+
+        return ret;
     }
-    return total / values.length;
-}
 
-function median(values) {
+    function mean(values) {
+        var total = 0;
+        for (var i = 0; i < values.length; i++) {
+            total += values[i];
+        }
+        return total / values.length;
+    }
 
-    values.sort( function(a,b) {return a - b;} );
+    function median(values) {
 
-    var half = Math.floor(values.length/2);
+        values.sort( function(a,b) {return a - b;} );
 
-    if(values.length % 2)
-        return values[half];
-    else
-        return (values[half-1] + values[half]) / 2.0;
-}
+        var half = Math.floor(values.length/2);
 
-function round(value, precision) {
-    var multiplier = Math.pow(10, precision || 0);
-    return Math.round(value * multiplier) / multiplier;
-}
+        if(values.length % 2)
+            return values[half];
+        else
+            return (values[half-1] + values[half]) / 2.0;
+    }
 
-function getDependentVar() {
-    var radios = document.getElementsByName('dep-var');
+    function round(value, precision) {
+        var multiplier = Math.pow(10, precision || 0);
+        return Math.round(value * multiplier) / multiplier;
+    }
 
-    for (var i = 0, length = radios.length; i < length; i++) {
-        if (radios[i].checked) {
-            return radios[i].value;
+    function getDependentVar() {
+        var radios = document.getElementsByName('dep-var');
+
+        for (var i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+                return radios[i].value;
+            }
         }
     }
-}
 
-function disableSlider(slider) {
-    var sliders = document.getElementsByClassName("slider");
-    for (var i = 0; i < sliders.length; i++) {
-        if (sliders[i].id == slider + "-slider") {
-            sliders[i].disabled = true;
-        } else {
-            sliders[i].disabled = false;
+    function disableSlider(slider) {
+        var sliders = document.getElementsByClassName("slider");
+        for (var i = 0; i < sliders.length; i++) {
+            if (sliders[i].id == slider + "-slider") {
+                sliders[i].disabled = true;
+            } else {
+                sliders[i].disabled = false;
+            }
         }
     }
 }
