@@ -75,6 +75,8 @@ function updateDependentVar() {
     var dep_var = getDependentVar();
     var set_to = calculateDependentVar(dep_var);
     document.getElementById(dep_var + "-label").innerHTML = set_to;
+    document.getElementById(dep_var + "-slider").value = set_to;
+
 }
 
 function calculateDependentVar(dep_var) {
