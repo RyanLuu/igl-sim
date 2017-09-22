@@ -65,10 +65,10 @@ function sliderUpdate(slider) {
 }
 
 function updateLabels() {
-    document.getElementById("pressure-label").innerHTML = round(pressure, 2);
-    document.getElementById("volume-label").innerHTML = round(volume, 2);
-    document.getElementById("moles-label").innerHTML = round(moles, 2);
-    document.getElementById("temperature-label").innerHTML = Math.round(temperature);
+    document.getElementById("pressure-label").innerHTML = round(vars.pressure, 2);
+    document.getElementById("volume-label").innerHTML = round(vars.volume, 2);
+    document.getElementById("moles-label").innerHTML = round(vars.moles, 2);
+    document.getElementById("temperature-label").innerHTML = Math.round(vars.temperature);
 }
 
 function setPressure(pressure) {
