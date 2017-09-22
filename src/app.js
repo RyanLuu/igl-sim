@@ -60,7 +60,7 @@ function setVolume(volume) {
 }
 
 function setTemperature(temperature) {
-    window.pJSDom[0].pJS.particles.move.speed = temperature * 0.08;
+    window.pJSDom[0].pJS.particles.move.speed = temperature * 0.05 + 12;
     document.getElementById("temperature-label").innerHTML = temperature;
 }
 
