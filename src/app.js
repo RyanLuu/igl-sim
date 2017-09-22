@@ -75,7 +75,23 @@ function setTemperature(temperature) {
 function updateDependentVar() {
     var dep_var = getDependentVar();
     var set_to = calculateDependentVar(dep_var);
-    document.getElementById(dep_var + "-label").innerHTML = set_to;
+    switch (dep_var) {
+        case "pressure":
+            setPressure(set_to);
+            break;
+        case "volume":
+            setVolume(set_to);
+            break;
+        case "moles":
+            setMoles(set_to);
+            break;
+        case "temperature":
+            setTemperature(set_to);
+            break;
+        default:
+            console.error("Illegal dependent variable: " + dep_var);
+            break;
+    }
     document.getElementById(dep_var + "-slider").value = set_to;
 }
 
