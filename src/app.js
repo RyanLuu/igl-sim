@@ -33,6 +33,11 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
   }
 });
 
+function setPressure(pressure) {
+    document.getElementById("pressure-label").innerHTML = pressure;
+    updateDependentVar();
+}
+
 function setMoles(moles) {
     var d_moles = Math.round(moles * 10 - window.pJSDom[0].pJS.particles.array.length);
     if (d_moles > 0) {
@@ -67,17 +72,11 @@ function setTemperature(temperature) {
     updateDependentVar();
 }
 
-function setPressure(pressure) {
-    document.getElementById("pressure-label").innerHTML = pressure;
-    updateDependentVar();
-}
-
 function updateDependentVar() {
     var dep_var = getDependentVar();
     var set_to = calculateDependentVar(dep_var);
     document.getElementById(dep_var + "-label").innerHTML = set_to;
     document.getElementById(dep_var + "-slider").value = set_to;
-
 }
 
 function calculateDependentVar(dep_var) {
@@ -179,6 +178,17 @@ function getDependentVar() {
     for (var i = 0, length = radios.length; i < length; i++) {
         if (radios[i].checked) {
             return radios[i].value;
+        }
+    }
+}
+
+function disableSlider(slider) {
+    var sliders = document.getElementsByClassName("slider");
+    for (var i = 0; i < sliders.length; i++) {
+        if (sliders[i].id == slider + "-slider") {
+            sliders[i].disabled = true;
+        } else {
+            sliders[i].disabled = false;
         }
     }
 }
