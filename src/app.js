@@ -1,25 +1,25 @@
 particlesJS.load('particles-js', 'assets/particles.json', function() {
-  console.log('callback - particles.js config loaded');
-  highlightParticle();
-  setInterval(pollPressure, 500)
+    console.log('callback - particles.js config loaded');
+    highlightParticle();
+    /*
+    setInterval(pollPressure, 500)
 
-  var canvas = document.getElementById("pressure-graph");
-  //canvas.style.width = "100%";
-  //canvas.style.height= "100%";
-  var context = canvas.getContext("2d"),
-	  width = canvas.width = document.getElementById("pressure").clientWidth,
-	  height = canvas.height = document.getElementById("pressure").clientHeight;
+    var canvas = document.getElementById("pressure-graph");
 
-  update();
+    var context = canvas.getContext("2d"),
+      width = canvas.width = document.getElementById("pressure").clientWidth,
+      height = canvas.height = document.getElementById("pressure").clientHeight;
 
-  context.strokeStyle = "#000";
-  function update() {
-      context.clearRect(0, 0, width, height);
+    update();
 
-      var filtered_values = filter(pressure_history, mean, 5);
-      var max_pressure = Math.max.apply(null, filtered_values);
-      context.beginPath();
-      for (var i = 0; i < pressure_history.length; i++) {
+    context.strokeStyle = "#000";
+    function update() {
+        context.clearRect(0, 0, width, height);
+
+        var filtered_values = filter(pressure_history, mean, 5);
+        var max_pressure = Math.max.apply(null, filtered_values);
+        context.beginPath();
+        for (var i = 0; i < pressure_history.length; i++) {
           var x = width * (i / pressure_history.length);
           var y = height * (1 - filtered_values[i] / max_pressure);
 
@@ -27,18 +27,45 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
               context.moveTo(x, y)
           }
           context.lineTo(x, y);
-      }
-      context.stroke();
-      requestAnimationFrame(update);
-  }
+        }
+        context.stroke();
+        requestAnimationFrame(update);
+    }
+    */
 
-    function sliderUpdate(value, f) {
-        f(value);
-        updateDependentVar();
+    var vars = {
+        pressure: document.getElementById("pressure-slider").value,
+        volume: document.getElementById("volume-slider").value,
+        moles: document.getElementById("moles-slider").value,
+        temperature: document.getElementById("temperature-slider").value
+    };
+
+    function sliderUpdate(slider) {
+        var prev_vars = vars;
+        var value = slider.value;
+        var ind_var_name = slider.id.slice(0, -7);
+        vars[ind_var_name] = value; // update independent variable
+        var dep_var_name = getDependentVar();
+        var dep_var = calculateDependentVar(dep_var_name); // calculte dependent variable
+        if (dep_var >= slider.min && dep_var <= slider.max) { // update dependent variable if within bounds
+            vars[dep_var_name] = dep_var;
+            document.getElementById(dep_var_name + "-slider").value = dep_var;
+        } else { // otherwise revert to previous variables
+            vars = prev_vars;
+        }
+        updateVar(ind_var_name);
+        updateVar(dep_var_name);
+        updateLabels();
+    }
+
+    function updateLabels() {
+        document.getElementById("pressure-label").innerHTML = round(pressure, 2);
+        document.getElementById("volume-label").innerHTML = round(volume, 2);
+        document.getElementById("moles-label").innerHTML = round(moles, 2);
+        document.getElementById("temperature-label").innerHTML = Math.round(temperature);
     }
 
     function setPressure(pressure) {
-        document.getElementById("pressure-label").innerHTML = round(pressure, 2);
     }
 
     function setMoles(moles) {
@@ -52,7 +79,6 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
         if (window.pJSDom[0].pJS.particles.array.length > 0) {
             highlightParticle();
         }
-        document.getElementById("moles-label").innerHTML = round(moles, 2);
     }
 
     function setVolume(volume) {
@@ -64,35 +90,30 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
             }
         }
         window.pJSDom[0].pJS.canvas.h0 = new_h0;
-        document.getElementById("volume-label").innerHTML = round(volume, 2);
     }
 
     function setTemperature(temperature) {
         window.pJSDom[0].pJS.particles.move.speed = temperature * 0.05 + 12;
-        document.getElementById("temperature-label").innerHTML = Math.round(temperature);
     }
 
-    function updateDependentVar() {
-        var dep_var = getDependentVar();
-        var set_to = calculateDependentVar(dep_var);
-        switch (dep_var) {
+    function updateVar(name) {
+        switch (name) {
             case "pressure":
-                setPressure(set_to);
+                setPressure(vars.pressure);
                 break;
             case "volume":
-                setVolume(set_to);
+                setVolume(vars.volume);
                 break;
             case "moles":
-                setMoles(set_to);
+                setMoles(vars.moles);
                 break;
             case "temperature":
-                setTemperature(set_to);
+                setTemperature(vars.temperature);
                 break;
             default:
-                console.error("Illegal dependent variable: " + dep_var);
+                console.error("Illegal variable: " + name);
                 break;
         }
-        document.getElementById(dep_var + "-slider").value = set_to;
     }
 
     function calculateDependentVar(dep_var) {
@@ -130,7 +151,7 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
     function highlightParticle() {
         window.pJSDom[0].pJS.particles.array[0].color={value:"#FF0000",rgb:{r:255,g:0,b:0}}
     }
-
+    /*
     var pressure_history = Array.apply(null, Array(50)).map(Number.prototype.valueOf, 0);
     var t_last = Date.now();
 
@@ -146,6 +167,7 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
         window.pJSDom[0].pJS.pressure = 0;
         t_last = now;
     }
+
 
     function filter(a, f, w) {
         if (w % 2 == 0 || !Number.isInteger(w)) {
@@ -182,7 +204,7 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
         else
             return (values[half-1] + values[half]) / 2.0;
     }
-
+    */
     function round(value, precision) {
         var multiplier = Math.pow(10, precision || 0);
         return Math.round(value * multiplier) / multiplier;
