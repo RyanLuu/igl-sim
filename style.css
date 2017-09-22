@@ -59,6 +59,10 @@ div#pressure {
     opacity: 1;
 }
 
+.slider:disabled {
+    background: #f3d3d3;
+}
+
 .slider-label {
     flex-basis: 160px;
 }
