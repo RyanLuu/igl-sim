@@ -57,15 +57,47 @@ function setVolume(volume) {
     }
     window.pJSDom[0].pJS.canvas.h0 = new_h0;
     document.getElementById("volume-label").innerHTML = volume;
+    updateDependentVar();
 }
 
 function setTemperature(temperature) {
     window.pJSDom[0].pJS.particles.move.speed = temperature * 0.05 + 12;
     document.getElementById("temperature-label").innerHTML = temperature;
+    updateDependentVar();
 }
 
 function setPressure(pressure) {
     document.getElementById("pressure-label").innerHTML = pressure;
+    updateDependentVar();
+}
+
+function updateDependentVar() {
+    var dep_var = getDependentVar();
+    var set_to = calculateDependentVar(dep_var);
+    document.getElementById(dep_var + "-label").innerHTML = set_to;
+}
+
+function calculateDependentVar(dep_var) {
+    var P = parseFloat(document.getElementById("pressure-label").innerHTML);
+    var V = parseFloat(document.getElementById("volume-label").innerHTML);
+    var n = parseFloat(document.getElementById("moles-label").innerHTML);
+    var R = .08206;
+    var T = parseInt(document.getElementById("temperature-label").innerHTML);
+
+    switch(dep_var) {
+        case "pressure":
+            return n * R * T / V;
+            break;
+        case "volume":
+            return n * R * T / P;
+            break;
+        case "moles":
+            return P * V / R / T;
+            break;
+        case "temperature":
+            return P * V / n / R;
+            break;
+    }
 }
 
 /*function updatePressureLabel() {
@@ -136,4 +168,14 @@ function median(values) {
 function round(value, precision) {
     var multiplier = Math.pow(10, precision || 0);
     return Math.round(value * multiplier) / multiplier;
+}
+
+function getDependentVar() {
+    var radios = document.getElementsByName('dep-var');
+
+    for (var i = 0, length = radios.length; i < length; i++) {
+        if (radios[i].checked) {
+            return radios[i].value;
+        }
+    }
 }
