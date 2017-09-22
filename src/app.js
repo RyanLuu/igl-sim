@@ -36,9 +36,9 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 function setMoles(moles) {
     var d_moles = Math.round(moles * 10 - window.pJSDom[0].pJS.particles.array.length);
     if (d_moles > 0) {
-        window.pJSDom[0].pJS.fn.modes.pushParticles()
+        window.pJSDom[0].pJS.fn.modes.pushParticles(d_moles)
     } else if (d_moles < 0) {
-        window.pJSDom[0].pJS.fn.modes.removeParticles(Math.round(window.pJSDom[0].pJS.particles.array.length - moles * 10))
+        window.pJSDom[0].pJS.fn.modes.removeParticles(-d_moles)
     }
 
     if (window.pJSDom[0].pJS.particles.array.length > 0) {
