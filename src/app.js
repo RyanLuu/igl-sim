@@ -34,13 +34,14 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 });
 
 function setMoles(moles) {
-    if (moles > window.pJSDom[0].pJS.particles.array.length) {
-        window.pJSDom[0].pJS.fn.modes.pushParticles(Math.round(moles * 10 - window.pJSDom[0].pJS.particles.array.length))
-    } else if (moles < window.pJSDom[0].pJS.particles.array.length) {
+    var d_moles = Math.round(moles * 10 - window.pJSDom[0].pJS.particles.array.length);
+    if (d_moles > 0) {
+        window.pJSDom[0].pJS.fn.modes.pushParticles()
+    } else if (d_moles < 0) {
         window.pJSDom[0].pJS.fn.modes.removeParticles(Math.round(window.pJSDom[0].pJS.particles.array.length - moles * 10))
     }
 
-    if (moles > 0) {
+    if (window.pJSDom[0].pJS.particles.array.length > 0) {
         highlightParticle();
     }
     document.getElementById("moles-label").innerHTML = moles;
