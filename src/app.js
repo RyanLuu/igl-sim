@@ -54,7 +54,7 @@ function setMoles(moles) {
     if (window.pJSDom[0].pJS.particles.array.length > 0) {
         highlightParticle();
     }
-    document.getElementById("moles-label").innerHTML = moles;
+    document.getElementById("moles-label").innerHTML = round(moles, 2);
 }
 
 function setVolume(volume) {
@@ -66,12 +66,12 @@ function setVolume(volume) {
         }
     }
     window.pJSDom[0].pJS.canvas.h0 = new_h0;
-    document.getElementById("volume-label").innerHTML = volume;
+    document.getElementById("volume-label").innerHTML = round(volume, 2);
 }
 
 function setTemperature(temperature) {
     window.pJSDom[0].pJS.particles.move.speed = temperature * 0.05 + 12;
-    document.getElementById("temperature-label").innerHTML = temperature;
+    document.getElementById("temperature-label").innerHTML = Math.round(temperature);
 }
 
 function updateDependentVar() {
