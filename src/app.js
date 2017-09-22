@@ -40,7 +40,7 @@ function sliderUpdate(value, f) {
 }
 
 function setPressure(pressure) {
-    document.getElementById("pressure-label").innerHTML = pressure;
+    document.getElementById("pressure-label").innerHTML = round(pressure, 2);
 }
 
 function setMoles(moles) {
