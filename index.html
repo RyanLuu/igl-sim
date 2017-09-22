@@ -12,22 +12,22 @@
 		<div id="controls">
 			<div class="slider-container">
 				<input type="radio" name="dep-var" value="pressure" onchange="disableSlider(this.value)" checked>
-				<input id="pressure-slider" class="slider" type="range" min="0.82" max="100.00" step=".01" value="1.00" oninput="sliderUpdate(this.value, setPressure)" disabled>
+				<input id="pressure-slider" class="slider" type="range" min="0.82" max="100.00" step=".01" value="1.00" oninput="sliderUpdate(this)" disabled>
 				<label class="slider-label">Pressure = <span id="pressure-label">1.00</span> atm</label>
 			</div>
 			<div class="slider-container">
 				<input type="radio" name="dep-var" value="volume" onchange="disableSlider(this.value)">
-				<input id="volume-slider" class="slider" type="range" min="4.00" max="40.0" step=".01" value="22.4" oninput="sliderUpdate(this.value, setVolume)">
+				<input id="volume-slider" class="slider" type="range" min="4.00" max="40.0" step=".01" value="22.4" oninput="sliderUpdate(this)">
 				<label class="slider-label">Volume = <span id="volume-label">22.4</span> L</label>
 			</div>
 			<div class="slider-container">
 				<input type="radio" name="dep-var" value="moles" onchange="disableSlider(this.value)">
-				<input id="moles-slider" class="slider" type="range" min="1" max="10" step=".01" value="1" oninput="sliderUpdate(this.value, setMoles)">
+				<input id="moles-slider" class="slider" type="range" min="1" max="10" step=".01" value="1" oninput="sliderUpdate(this)">
 				<label class="slider-label">Moles = <span id="moles-label">1</span> mol</label>
 			</div>
 			<div class="slider-container">
 				<input type="radio" name="dep-var" value="temperature" onchange="disableSlider(this.value)">
-				<input id="temperature-slider" class="slider" type="range" min="25" max="400" step="1" value="273" oninput="sliderUpdate(this.value, setTemperature)">
+				<input id="temperature-slider" class="slider" type="range" min="25" max="400" step="1" value="273" oninput="sliderUpdate(this)">
 				<label class="slider-label">Temperature = <span id="temperature-label">300</span> K</label>
 			</div>
 		</div>
