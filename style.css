@@ -16,7 +16,7 @@ html, body {
 	grid-template-rows: 1fr 1fr;
 	grid-template-areas:
 		"visual controls"
-		"visual pressure";
+		"visual graph";
 }
 
 div#particles-js {
@@ -32,8 +32,8 @@ div#controls {
     background-color: white;
 }
 
-div#pressure {
-    grid-area: pressure;
+div#graph {
+    grid-area: graph;
     margin: 10px;
     padding: 10px;
     background-color: white;

@@ -1,43 +1,22 @@
 particlesJS.load('particles-js', 'assets/particles.json', function() {
     console.log('callback - particles.js config loaded');
     highlightParticle();
-    /*
-    setInterval(pollPressure, 500)
-
-    var canvas = document.getElementById("pressure-graph");
-
-    var context = canvas.getContext("2d"),
-      width = canvas.width = document.getElementById("pressure").clientWidth,
-      height = canvas.height = document.getElementById("pressure").clientHeight;
-
-    update();
-
-    context.strokeStyle = "#000";
-    function update() {
-        context.clearRect(0, 0, width, height);
-
-        var filtered_values = filter(pressure_history, mean, 5);
-        var max_pressure = Math.max.apply(null, filtered_values);
-        context.beginPath();
-        for (var i = 0; i < pressure_history.length; i++) {
-          var x = width * (i / pressure_history.length);
-          var y = height * (1 - filtered_values[i] / max_pressure);
-
-          if (i == 0) {
-              context.moveTo(x, y)
-          }
-          context.lineTo(x, y);
-        }
-        context.stroke();
-        requestAnimationFrame(update);
-    }
-    */
 });
 
 var vars;
+var canvas;
+var context;
+var width, height;
+var graph_history;
 
 window.addEventListener('load',
     function() {
+        canvas = document.getElementById("grapher");
+        context = canvas.getContext("2d");
+        width = canvas.width = document.getElementById("graph").clientWidth;
+        height = canvas.height = document.getElementById("graph").clientHeight;
+        context.fillStyle = "#000";
+
         vars = {
             pressure: parseFloat(document.getElementById("pressure-slider").value),
             volume: parseFloat(document.getElementById("volume-slider").value),
@@ -45,6 +24,21 @@ window.addEventListener('load',
             temperature: parseFloat(document.getElementById("temperature-slider").value)
         };
     }, false);
+
+function canvasUpdate() {
+    context.clearRect(0, 0, width, height);
+    var n = graph_history.length, max = 0;
+    for (var i = 0; i < n; i++) {
+        max = Math.max(max, graph_history[i].x);
+        max = Math.max(max, graph_history[i].y);
+    }
+    for (var i = 0; i < n; i++) {
+        var x = graph_history[i].x / max * width;
+        var y = (1 - graph_history[i].y / max) * height;
+        context.arc(x, y, 1/max, 0, 2 * Math.PI);
+        context.fill();
+    }
+}
 
 function sliderUpdate(slider) {
     var prev_vars = {
@@ -63,6 +57,12 @@ function sliderUpdate(slider) {
     var dv = calculateDependentVar(dv_name); // calculte dependent variable
     if (dv >= dv_slider.min && dv <= dv_slider.max) { // update dependent variable if within bounds
         vars[dv_name] = dv;
+        var new_point = {
+            x: value,
+            y: dv
+        };
+        graph_history.push(new_point);
+        canvasUpdate();
     } else { // otherwise revert to previous variables
         vars = prev_vars;
     }
