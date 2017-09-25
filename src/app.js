@@ -17,6 +17,7 @@ window.addEventListener('load',
         width = canvas.width = document.getElementById("graph").clientWidth;
         height = canvas.height = document.getElementById("graph").clientHeight;
         context.fillStyle = "#000";
+        context.strokeStyle = "#000";
 
         vars = {
             pressure: parseFloat(document.getElementById("pressure-slider").value),
@@ -28,16 +29,25 @@ window.addEventListener('load',
 
 function canvasUpdate() {
     context.clearRect(0, 0, width, height);
+    var gwidth = width - 20;
+    var gheight = height - 20;
     var xmax = parseFloat(document.getElementById(graph_iv + "-slider").max);
     var ymax = parseFloat(document.getElementById(graph_dv + "-slider").max);
     var n = graph_history.length;
     for (var i = 0; i < n; i++) {
-        var x = graph_history[i].x / xmax * width;
-        var y = (1 - graph_history[i].y / ymax) * height;
+        var x = graph_history[i].x / xmax * gwidth + 20;
+        var y = (1 - graph_history[i].y / ymax) * gheight + 20;
         context.beginPath();
         context.arc(x, y, 5, 0, 2 * Math.PI);
         context.fill();
     }
+    context.strokeRect(20, 0, gwidth, gheight);
+    context.fillText(graph_iv, height - 20, 20);
+    context.save();
+    context.translate(height - 20, 20);
+    context.rotate(Math.PI / 2);
+    context.fillText(graph_dv, 0, 0);
+    context.restore();
 }
 
 function sliderUpdate(slider) {
