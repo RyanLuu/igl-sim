@@ -25,6 +25,8 @@ window.addEventListener('load',
             moles: parseFloat(document.getElementById("moles-slider").value),
             temperature: parseFloat(document.getElementById("temperature-slider").value)
         };
+
+        canvasUpdate();
     }, false);
 
 function canvasUpdate() {
@@ -42,10 +44,10 @@ function canvasUpdate() {
         context.fill();
     }
     context.strokeRect(20, 0, gwidth, gheight);
-    context.fillText(graph_iv, height - 20, 20);
+    context.fillText(graph_iv, 20, height - 20);
     context.save();
-    context.translate(height - 20, 20);
-    context.rotate(Math.PI / 2);
+    context.translate(20, height - 20);
+    context.rotate(-Math.PI / 2);
     context.fillText(graph_dv, 0, 0);
     context.restore();
 }
