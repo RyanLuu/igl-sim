@@ -63,14 +63,18 @@ function sliderUpdate(slider) {
     }
     updateVar(iv_name);
     updateVar(dv_name);
-    updateLabels();
+    updateLabel(iv_name);
+    updateLabel(dv_name);
+    updateSlider(iv_name);
+    updateSlider(dv_name);
 }
 
-function updateLabels() {
-    document.getElementById("pressure-label").innerHTML = round(vars.pressure, 2);
-    document.getElementById("volume-label").innerHTML = round(vars.volume, 2);
-    document.getElementById("moles-label").innerHTML = round(vars.moles, 2);
-    document.getElementById("temperature-label").innerHTML = Math.round(vars.temperature);
+function updateLabel(name) {
+    document.getElementById(name + "-label").innerHTML = round(vars[name], 2);
+}
+
+function updateSlider(name) {
+    document.getElementById(name + "-slider").value = vars[name];
 }
 
 function setPressure(pressure) {
