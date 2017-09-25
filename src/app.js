@@ -35,6 +35,7 @@ function canvasUpdate() {
     for (var i = 0; i < n; i++) {
         var x = graph_history[i].x / max * width;
         var y = (1 - graph_history[i].y / max) * height;
+        context.beginPath();
         context.arc(x, y, 5, 0, 2 * Math.PI);
         context.fill();
     }
