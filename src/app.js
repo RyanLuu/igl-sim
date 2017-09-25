@@ -47,7 +47,12 @@ window.addEventListener('load',
     }, false);
 
 function sliderUpdate(slider) {
-    var prev_vars = vars;
+    var prev_vars = {
+        pressure: vars.pressure,
+        volume: vars.volume,
+        moles: vars.moles,
+        temperature: vars.temperature
+    };
     var value = slider.value;
     var iv_name = slider.id.slice(0, -7);
     var dv_name = getDependentVar();
