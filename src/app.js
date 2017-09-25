@@ -39,10 +39,10 @@ var vars;
 window.addEventListener('load',
     function() {
         vars = {
-            pressure: document.getElementById("pressure-slider").value,
-            volume: document.getElementById("volume-slider").value,
-            moles: document.getElementById("moles-slider").value,
-            temperature: document.getElementById("temperature-slider").value
+            pressure: parseFloat(document.getElementById("pressure-slider").value),
+            volume: parseFloat(document.getElementById("volume-slider").value),
+            moles: parseFloat(document.getElementById("moles-slider").value),
+            temperature: parseFloat(document.getElementById("temperature-slider").value)
         };
     }, false);
 
@@ -58,10 +58,8 @@ function sliderUpdate(slider) {
     var dv = calculateDependentVar(dv_name); // calculte dependent variable
     if (dv >= dv_slider.min && dv <= dv_slider.max) { // update dependent variable if within bounds
         vars[dv_name] = dv;
-        document.getElementById(dv_name + "-slider").value = dv;
     } else { // otherwise revert to previous variables
         vars = prev_vars;
-        iv_slider.value = vars[iv_name];
     }
     updateVar(iv_name);
     updateVar(dv_name);
