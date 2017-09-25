@@ -8,6 +8,7 @@ var canvas;
 var context;
 var width, height;
 var graph_history = [];
+var graph_dv, graph_iv;
 
 window.addEventListener('load',
     function() {
@@ -27,14 +28,12 @@ window.addEventListener('load',
 
 function canvasUpdate() {
     context.clearRect(0, 0, width, height);
-    var n = graph_history.length, max = 0;
+    var xmax = parseFloat(document.getElementById(graph_iv + "-slider").max);
+    var ymax = parseFloat(document.getElementById(graph_dv + "-slider").max);
+    var n = graph_history.length;
     for (var i = 0; i < n; i++) {
-        max = Math.max(max, graph_history[i].x);
-        max = Math.max(max, graph_history[i].y);
-    }
-    for (var i = 0; i < n; i++) {
-        var x = graph_history[i].x / max * width;
-        var y = (1 - graph_history[i].y / max) * height;
+        var x = graph_history[i].x / xmax * width;
+        var y = (1 - graph_history[i].y / ymax) * height;
         context.beginPath();
         context.arc(x, y, 5, 0, 2 * Math.PI);
         context.fill();
@@ -63,6 +62,11 @@ function sliderUpdate(slider) {
             y: dv
         };
         graph_history.push(new_point);
+        if (graph_iv != iv_name || graph_dv != dv_name) {
+            graph_history = [];
+            graph_iv = iv_name;
+            graph_dv = dv_name;
+        }
         canvasUpdate();
     } else { // otherwise revert to previous variables
         vars = prev_vars;
