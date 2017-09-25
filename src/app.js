@@ -18,6 +18,7 @@ window.addEventListener('load',
         height = canvas.height = document.getElementById("graph").clientHeight;
         context.fillStyle = "#000";
         context.strokeStyle = "#000";
+        context.font = "16px serif";
 
         vars = {
             pressure: parseFloat(document.getElementById("pressure-slider").value),
@@ -38,13 +39,13 @@ function canvasUpdate() {
     var n = graph_history.length;
     for (var i = 0; i < n; i++) {
         var x = graph_history[i].x / xmax * gwidth + 20;
-        var y = (1 - graph_history[i].y / ymax) * gheight + 20;
+        var y = (1 - graph_history[i].y / ymax) * gheight - 20;
         context.beginPath();
         context.arc(x, y, 5, 0, 2 * Math.PI);
         context.fill();
     }
     context.strokeRect(20, 0, gwidth, gheight);
-    context.fillText(graph_iv, 20, height - 20);
+    context.fillText(graph_iv, 20 + 16, height - 20);
     context.save();
     context.translate(20, height - 20);
     context.rotate(-Math.PI / 2);
