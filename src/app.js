@@ -7,7 +7,7 @@ var vars;
 var canvas;
 var context;
 var width, height;
-var graph_history;
+var graph_history = [];
 
 window.addEventListener('load',
     function() {
