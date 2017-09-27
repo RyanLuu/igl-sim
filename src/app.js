@@ -6,7 +6,7 @@ particlesJS.load('particles-js', 'assets/particles.json', function() {
 var vars;
 var canvas;
 var context;
-var width, height;
+var chart;
 var graph_history = [];
 var graph_dv, graph_iv;
 
@@ -14,11 +14,8 @@ window.addEventListener('load',
     function() {
         canvas = document.getElementById("grapher");
         context = canvas.getContext("2d");
-        width = canvas.width = document.getElementById("graph").clientWidth;
-        height = canvas.height = document.getElementById("graph").clientHeight;
-        context.fillStyle = "#000";
-        context.strokeStyle = "#000";
-        context.font = "16px serif";
+        canvas.width = document.getElementById("graph").clientWidth;
+        canvas.height = document.getElementById("graph").clientHeight;
 
         vars = {
             pressure: parseFloat(document.getElementById("pressure-slider").value),
@@ -27,9 +24,13 @@ window.addEventListener('load',
             temperature: parseFloat(document.getElementById("temperature-slider").value)
         };
 
-        canvasUpdate();
+        chart = new Chart(context, {
+            type: 'line'
+        })
+
     }, false);
 
+/*
 function canvasUpdate() {
     context.clearRect(0, 0, width, height);
     var gwidth = width - 20;
@@ -54,6 +55,7 @@ function canvasUpdate() {
         context.restore();
     }
 }
+*/
 
 function sliderUpdate(slider) {
     var prev_vars = {
