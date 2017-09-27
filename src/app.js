@@ -25,7 +25,7 @@ window.addEventListener('load',
         };
 
         chart = new Chart(context, {
-            type: 'line'
+            type: 'scatter'
         })
 
     }, false);
