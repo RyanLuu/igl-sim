@@ -78,16 +78,30 @@ function sliderUpdate(slider) {
             x: value,
             y: dv
         };
-        graph_history.push(new_point);
         if (graph_iv != iv_name || graph_dv != dv_name) {
             graph_history = [];
             graph_iv = iv_name;
             graph_dv = dv_name;
+            chart.options.scales = {
+                yAxes: [{
+                    ticks: {
+                        suggestedMin: dv_slider.min,
+                        suggestedMax: dv_slider.max
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        suggestedMin: iv_slider.min,
+                        suggestedMax: iv_slider.max
+                    }
+                }]
+            };
         }
-        chart.data.datasets= [{
+        graph_history.push(new_point);
+        chart.data.datasets = [{
             label: dv_name + ' vs. ' + iv_name,
             data: graph_history
-        }]
+        }];
         chart.update({
             duration: 0
         });
