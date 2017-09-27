@@ -8,7 +8,6 @@ var canvas;
 var context;
 var chart;
 var graph_history = [];
-var graph_dv, graph_iv;
 
 window.addEventListener('load',
     function() {
@@ -81,9 +80,12 @@ function sliderUpdate(slider) {
         graph_history.push(new_point);
         if (graph_iv != iv_name || graph_dv != dv_name) {
             graph_history = [];
-            graph_iv = iv_name;
-            graph_dv = dv_name;
         }
+        chart.data.datasets= [{
+            label: dv_name + ' vs. ' + iv_name,
+            data: graph_history
+        }]
+        chart.update();
     } else { // otherwise revert to previous variables
         vars = prev_vars;
     }
