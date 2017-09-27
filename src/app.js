@@ -84,7 +84,6 @@ function sliderUpdate(slider) {
             graph_iv = iv_name;
             graph_dv = dv_name;
         }
-        canvasUpdate();
     } else { // otherwise revert to previous variables
         vars = prev_vars;
     }
