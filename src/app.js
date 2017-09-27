@@ -88,7 +88,9 @@ function sliderUpdate(slider) {
             label: dv_name + ' vs. ' + iv_name,
             data: graph_history
         }]
-        chart.update();
+        chart.update({
+            duration: 0
+        });
     } else { // otherwise revert to previous variables
         vars = prev_vars;
     }
