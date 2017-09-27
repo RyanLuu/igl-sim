@@ -25,7 +25,23 @@ window.addEventListener('load',
         };
 
         chart = new Chart(context, {
-            type: 'scatter'
+            type: 'scatter',
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 1
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 1
+                        }
+                    }]
+                }
+            }
         })
 
     }, false);
