@@ -29,12 +29,18 @@ window.addEventListener('load',
             options: {
                 scales: {
                     xAxes: [{
+                        scaleLabel: {
+                            display: true
+                        },
                         ticks: {
                             suggestedMin: 0,
                             suggestedMax: 1
                         }
                     }],
                     yAxes: [{
+                        scaleLabel: {
+                            display: true
+                        },
                         ticks: {
                             suggestedMin: 0,
                             suggestedMax: 1
@@ -100,10 +106,11 @@ function sliderUpdate(slider) {
             graph_dv = dv_name;
             chart.options.scales.xAxes[0].ticks.suggestedMax = iv_slider.max;
             chart.options.scales.yAxes[0].ticks.suggestedMax = dv_slider.max;
+            chart.options.scales.xAxes[0].scaleLabel.labelString = iv_name;
+            chart.options.scales.yAxes[0].scaleLabel.labelString = dv_name;
         }
         graph_history.push(new_point);
         chart.data.datasets = [{
-            label: dv_name + ' vs. ' + iv_name,
             data: graph_history
         }];
         chart.update({
