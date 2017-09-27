@@ -27,6 +27,13 @@ window.addEventListener('load',
         chart = new Chart(context, {
             type: 'scatter',
             options: {
+                title: {
+                    display: true,
+                    text: "Relations"
+                },
+                legend: {
+                    display: false
+                },
                 scales: {
                     xAxes: [{
                         scaleLabel: {
@@ -106,8 +113,8 @@ function sliderUpdate(slider) {
             graph_dv = dv_name;
             chart.options.scales.xAxes[0].ticks.suggestedMax = iv_slider.max;
             chart.options.scales.yAxes[0].ticks.suggestedMax = dv_slider.max;
-            chart.options.scales.xAxes[0].scaleLabel.labelString = iv_name;
-            chart.options.scales.yAxes[0].scaleLabel.labelString = dv_name;
+            chart.options.scales.xAxes[0].scaleLabel.labelString = name_to_display(iv_name);
+            chart.options.scales.yAxes[0].scaleLabel.labelString = name_to_display(dv_name);
         }
         graph_history.push(new_point);
         chart.data.datasets = [{
@@ -298,5 +305,18 @@ function disableSlider(slider) {
         } else {
             sliders[i].disabled = false;
         }
+    }
+}
+
+function name_to_display(name) {
+    switch(name) {
+        case "pressure":
+            return "Pressure (atm)"
+        case "volume":
+            return "Volume (L)"
+        case "moles":
+            return "Moles"
+        case "temperature"
+            return "Temperature (K)"
     }
 }
