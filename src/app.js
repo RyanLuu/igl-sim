@@ -64,7 +64,7 @@ function sliderUpdate(slider) {
         moles: vars.moles,
         temperature: vars.temperature
     };
-    var value = slider.value;
+    var value = praseFloat(slider.value);
     var iv_name = slider.id.slice(0, -7);
     var dv_name = getDependentVar();
     var iv_slider = slider;
