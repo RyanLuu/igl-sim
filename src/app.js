@@ -82,19 +82,21 @@ function sliderUpdate(slider) {
             graph_history = [];
             graph_iv = iv_name;
             graph_dv = dv_name;
-            chart.options.scales = {
-                yAxes: [{
-                    ticks: {
-                        suggestedMin: dv_slider.min,
-                        suggestedMax: dv_slider.max
-                    }
-                }],
-                xAxes: [{
-                    ticks: {
-                        suggestedMin: iv_slider.min,
-                        suggestedMax: iv_slider.max
-                    }
-                }]
+            chart.options = {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            suggestedMin: dv_slider.min,
+                            suggestedMax: dv_slider.max
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            suggestedMin: iv_slider.min,
+                            suggestedMax: iv_slider.max
+                        }
+                    }]
+                }
             };
         }
         graph_history.push(new_point);
