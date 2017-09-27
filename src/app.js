@@ -311,12 +311,12 @@ function disableSlider(slider) {
 function name_to_display(name) {
     switch(name) {
         case "pressure":
-            return "Pressure (atm)"
+            return "Pressure (atm)";
         case "volume":
-            return "Volume (L)"
+            return "Volume (L)";
         case "moles":
-            return "Moles"
-        case "temperature"
-            return "Temperature (K)"
+            return "Moles";
+        case "temperature":
+            return "Temperature (K)";
     }
 }
