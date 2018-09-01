@@ -1,40 +1,303 @@
-<!DOCTYPE html>
 <html>
-<head>
-	<link rel="stylesheet" href="style.css"></link>
-	<script type="text/javascript" src="lib/particles.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.js"></script>
-	<script type="text/javascript" src="src/app.js"></script>
-	<title>Ideal Gas Law Simulation</title>
-</head>
-<body>
-	<div class="site">
-		<div id="particles-js"></div>
-		<div id="controls">
-			<div class="slider-container">
-				<input type="radio" name="dep-var" value="pressure" onchange="disableSlider(this.value)" checked>
-				<input id="pressure-slider" class="slider" type="range" min="0.82" max="30.00" step=".01" value="1.00" oninput="sliderUpdate(this)" disabled>
-				<label class="slider-label">Pressure = <span id="pressure-label">1.00</span> atm</label>
-			</div>
-			<div class="slider-container">
-				<input type="radio" name="dep-var" value="volume" onchange="disableSlider(this.value)">
-				<input id="volume-slider" class="slider" type="range" min="8.00" max="40.0" step=".01" value="22.4" oninput="sliderUpdate(this)">
-				<label class="slider-label">Volume = <span id="volume-label">22.4</span> L</label>
-			</div>
-			<div class="slider-container">
-				<input type="radio" name="dep-var" value="moles" onchange="disableSlider(this.value)">
-				<input id="moles-slider" class="slider" type="range" min="1" max="10" step=".01" value="1" oninput="sliderUpdate(this)">
-				<label class="slider-label">Moles = <span id="moles-label">1</span> mol</label>
-			</div>
-			<div class="slider-container">
-				<input type="radio" name="dep-var" value="temperature" onchange="disableSlider(this.value)">
-				<input id="temperature-slider" class="slider" type="range" min="25" max="400" step="1" value="273" oninput="sliderUpdate(this)">
-				<label class="slider-label">Temperature = <span id="temperature-label">300</span> K</label>
-			</div>
-		</div>
-		<div id="graph">
-			<canvas id="grapher"></canvas>
-		</div>
-	</div>
-</body>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+        <script src="dist/bundle.js" async></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="dist/bundle.css">
+        <link rel="shortcut icon" href="favicon.ico" />
+    </head>
+    <body style="overflow: hidden">
+        <div id="controls-card" class="mdc-card">
+            <div class="mdc-tab-bar" role="tablist">
+                <div class="mdc-tab-scroller">
+                    <div class="mdc-tab-scroller__scroll-area mdc-tab-scroller__scroll-area--scroll" style="margin-bottom: 0px;">
+                        <div class="mdc-tab-scroller__scroll-content">
+                            <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true">
+                                <span class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Global Variables</span>
+                                </span>
+                                <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <span class="mdc-tab__ripple mdc-ripple-upgraded"></span>
+                            </button>
+                            <button class="mdc-tab" role="tab" aria-selected="false">
+                                <span class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Gases</span>
+                                </span>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <span class="mdc-tab__ripple mdc-ripple-upgraded"></span>
+                            </button>
+                            <button class="mdc-tab" role="tab" aria-selected="false">
+                                <span class="mdc-tab__content">
+                                    <span class="mdc-tab__text-label">Display Options</span>
+                                </span>
+                                <span class="mdc-tab-indicator">
+                                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                                </span>
+                                <span class="mdc-tab__ripple mdc-ripple-upgraded"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tab-0" class="mdc-layout-grid" style="margin: 0; display: block">
+                <div class="mdc-layout-grid__inner">
+                    <div class="mdc-layout-grid__cell">
+                        <button class="toggle-lock mdc-icon-button material-icons" var="pressure" style="float:left" aria-pressed="true" disabled data-toggle-on-content="lock" data-toggle-off-content="lock_open"></button>
+                        <p style="float:left">Pressure</p>
+                        <p style="float:right" class="label" var="pressure" unit="atm"></p>
+                        <div class="clearfix"></div>
+                        <div>
+                            <div class="var-slider mdc-slider mdc-slider--disabled" data-step=".0001" var="pressure" role="slider" aria-disabled="true" aria-valuemin="0.05" aria-valuemax="100">
+                                <div class="mdc-slider__track-container">
+                                    <div class="mdc-slider__track"></div>
+                                </div>
+                                <div class="mdc-slider__thumb-container">
+                                    <svg class="mdc-slider__thumb" width="21" height="21">
+                                        <circle cx="10.5" cy="10.5" r="7.875"></circle>
+                                    </svg>
+                                    <div class="mdc-slider__focus-ring"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell">
+                        <button class="toggle-lock mdc-icon-button material-icons" var="volume" style="float:left" data-toggle-on-content="lock" data-toggle-off-content="lock_open"></button>
+                        <p style="float:left">Volume</p>
+                        <p style="float:right" class="label" var="volume" unit="L"></p>
+                        <div class="clearfix"></div>
+                        <div class="var-slider mdc-slider" data-step=".0001" var="volume" role="slider" aria-valuemin="1.22" aria-valuemax="39.99">
+                            <div class="mdc-slider__track-container">
+                                <div class="mdc-slider__track"></div>
+                            </div>
+                            <div class="mdc-slider__thumb-container">
+                                <svg class="mdc-slider__thumb" width="21" height="21">
+                                    <circle cx="10.5" cy="10.5" r="7.875"></circle>
+                                </svg>
+                                <div class="mdc-slider__focus-ring"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__cell">
+                        <button class="toggle-lock mdc-icon-button material-icons" var="temperature" style="float:left" data-toggle-on-content="lock" data-toggle-off-content="lock_open"></button>
+                        <p style="float:left">Temperature</p>
+                        <p style="float:right" class="label" var="temperature" unit="K"></p>
+                        <div class="clearfix"></div>
+                        <div class="var-slider mdc-slider" data-step=".0001" var="temperature" role="slider" aria-valuemin="25" aria-valuemax="400">
+                            <div class="mdc-slider__track-container">
+                                <div class="mdc-slider__track"></div>
+                            </div>
+                            <div class="mdc-slider__thumb-container">
+                                <svg class="mdc-slider__thumb" width="21" height="21">
+                                    <circle cx="10.5" cy="10.5" r="7.875"></circle>
+                                </svg>
+                                <div class="mdc-slider__focus-ring"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="reset-button" class="mdc-button mdc-button--raised mdc-button--dense">Reset</button>
+            </div>
+            <div id="tab-1" class="mdc-layout-grid" style="margin: 0; display: none">
+                <div class="mdc-layout-grid__inner">
+                    <div class="mdc-layout-grid__cell">
+                        <ul id="species-list" class="mdc-list mdc-list--dense" aria-orientation="vertical">
+                            <li class="mdc-list-item"><span class="mdc-list-item__graphic material-icons" aria-hidden="true">all_out</span>Species X<span element=""></span></li>
+                            <li class="mdc-list-item"><span class="mdc-list-item__graphic material-icons" aria-hidden="true">all_out</span>Species X<span element=""></span></li>
+                            <li class="mdc-list-item"><span class="mdc-list-item__graphic material-icons" aria-hidden="true">all_out</span>Species X<span element=""></span></li>
+                        </ul>
+                    </div>
+                        <div class="species0 gas-options mdc-layout-grid__cell">
+                            <button class="toggle-lock mdc-icon-button material-icons" var="moles0" style="float:left" data-toggle-on-content="lock" data-toggle-off-content="lock_open"></button>
+                            <p style="float:left">Moles</p>
+                            <p style="float:right" class="label" var="moles0" unit="mol"></p>
+                            <div class="clearfix"></div>
+                            <div class="var-slider mdc-slider" data-step=".0001" var="moles0" role="slider" aria-valuemin="0" aria-valuemax="10">
+                                <div class="mdc-slider__track-container">
+                                    <div class="mdc-slider__track"></div>
+                                </div>
+                                <div class="mdc-slider__thumb-container">
+                                    <svg class="mdc-slider__thumb" width="21" height="21">
+                                        <circle cx="10.5" cy="10.5" r="7.875"></circle>
+                                    </svg>
+                                    <div class="mdc-slider__focus-ring"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="species0 gas-options mdc-layout-grid__cell">
+                            <div class="mdc-chip-set mdc-chip-set--choice">
+                                <div id="species-chip-he" class="mdc-chip">
+                                    <div class="mdc-chip__text">He</div>
+                                </div>
+                                <div id="species-chip-ne" class="mdc-chip">
+                                    <div class="mdc-chip__text">Ne</div>
+                                </div>
+                                <div id="species-chip-ar" class="mdc-chip">
+                                    <div class="mdc-chip__text">Ar</div>
+                                </div>
+                                <div id="species-chip-kr" class="mdc-chip">
+                                    <div class="mdc-chip__text">Kr</div>
+                                </div>
+                                <div id="species-chip-xe" class="mdc-chip">
+                                    <div class="mdc-chip__text">Xe</div>
+                                </div>
+                                <div id="species-chip-rn" class="mdc-chip">
+                                    <div class="mdc-chip__text">Rn</div>
+                                </div>
+                            </div>
+                            <div class="element-label">
+                                <div style="width:72px; padding-right:8px; text-align:right; border-right:1px solid rgba(0,0,0,.12)">
+                                    <span class="mdc-typography--headline2"></span>
+                                </div>
+                                <div>
+                                    <p style="padding-left:8px"><span class="mdc-typography--headline6"></span><br><span class="mdc-typography--caption"></span><br><span class="mdc-typography--caption"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="species1 gas-options mdc-layout-grid__cell">
+                            <button class="toggle-lock mdc-icon-button material-icons" var="moles1" style="float:left" data-toggle-on-content="lock" data-toggle-off-content="lock_open"></button>
+                            <p style="float:left">Moles</p>
+                            <p style="float:right" class="label" var="moles1" unit="mol"></p>
+                            <div class="clearfix"></div>
+                            <div class="var-slider mdc-slider" data-step=".0001" var="moles1" role="slider" aria-valuemin="0" aria-valuemax="10">
+                                <div class="mdc-slider__track-container">
+                                    <div class="mdc-slider__track"></div>
+                                </div>
+                                <div class="mdc-slider__thumb-container">
+                                    <svg class="mdc-slider__thumb" width="21" height="21">
+                                        <circle cx="10.5" cy="10.5" r="7.875"></circle>
+                                    </svg>
+                                    <div class="mdc-slider__focus-ring"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="species1 gas-options mdc-layout-grid__cell">
+                            <div class="mdc-chip-set mdc-chip-set--choice">
+                                <div id="species-chip-he" class="mdc-chip">
+                                    <div class="mdc-chip__text">He</div>
+                                </div>
+                                <div id="species-chip-ne" class="mdc-chip">
+                                    <div class="mdc-chip__text">Ne</div>
+                                </div>
+                                <div id="species-chip-ar" class="mdc-chip">
+                                    <div class="mdc-chip__text">Ar</div>
+                                </div>
+                                <div id="species-chip-kr" class="mdc-chip">
+                                    <div class="mdc-chip__text">Kr</div>
+                                </div>
+                                <div id="species-chip-xe" class="mdc-chip">
+                                    <div class="mdc-chip__text">Xe</div>
+                                </div>
+                                <div id="species-chip-rn" class="mdc-chip">
+                                    <div class="mdc-chip__text">Rn</div>
+                                </div>
+                            </div>
+                            <div class="element-label">
+                                <div style="width:72px; padding-right:8px; text-align:right; border-right:1px solid rgba(0,0,0,.12)">
+                                    <span class="mdc-typography--headline2"></span>
+                                </div>
+                                <div>
+                                    <p style="padding-left:8px"><span class="mdc-typography--headline6"></span><br><span class="mdc-typography--caption"></span><br><span class="mdc-typography--caption"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="species2 gas-options mdc-layout-grid__cell">
+                            <button class="toggle-lock mdc-icon-button material-icons" var="moles2" style="float:left" data-toggle-on-content="lock" data-toggle-off-content="lock_open"></button>
+                            <p style="float:left">Moles</p>
+                            <p style="float:right" class="label" var="moles2" unit="mol"></p>
+                            <div class="clearfix"></div>
+                            <div class="var-slider mdc-slider" data-step=".0001" var="moles2" role="slider" aria-valuemin="0" aria-valuemax="10">
+                                <div class="mdc-slider__track-container">
+                                    <div class="mdc-slider__track"></div>
+                                </div>
+                                <div class="mdc-slider__thumb-container">
+                                    <svg class="mdc-slider__thumb" width="21" height="21">
+                                        <circle cx="10.5" cy="10.5" r="7.875"></circle>
+                                    </svg>
+                                    <div class="mdc-slider__focus-ring"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="species2 gas-options mdc-layout-grid__cell">
+                            <div class="mdc-chip-set mdc-chip-set--choice">
+                                <div id="species-chip-he" class="mdc-chip">
+                                    <div class="mdc-chip__text">He</div>
+                                </div>
+                                <div id="species-chip-ne" class="mdc-chip">
+                                    <div class="mdc-chip__text">Ne</div>
+                                </div>
+                                <div id="species-chip-ar" class="mdc-chip">
+                                    <div class="mdc-chip__text">Ar</div>
+                                </div>
+                                <div id="species-chip-kr" class="mdc-chip">
+                                    <div class="mdc-chip__text">Kr</div>
+                                </div>
+                                <div id="species-chip-xe" class="mdc-chip">
+                                    <div class="mdc-chip__text">Xe</div>
+                                </div>
+                                <div id="species-chip-rn" class="mdc-chip">
+                                    <div class="mdc-chip__text">Rn</div>
+                                </div>
+                            </div>
+                            <div class="element-label">
+                                <div style="width:72px; padding-right:8px; text-align:right; border-right:1px solid rgba(0,0,0,.12)">
+                                    <span class="mdc-typography--headline2"></span>
+                                </div>
+                                <div>
+                                    <p style="padding-left:8px"><span class="mdc-typography--headline6"></span><br><span class="mdc-typography--caption"></span><br><span class="mdc-typography--caption"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-2" class="mdc-typography" style="display: none; text-align: center">
+                        <div style="margin:12px; display:flex; flex-direction:column">
+                            <div style="padding:8px">
+                                <div class="trail-switch mdc-switch">
+                                    <div class="mdc-switch__track"></div>
+                                    <div class="mdc-switch__thumb-underlay">
+                                        <div class="mdc-switch__thumb">
+                                            <input type="checkbox" id="trail-switch" class="mdc-switch__native-control" role="switch">
+                                        </div>
+                                    </div>
+                                </div>
+                                <label for="trail-switch" style="margin-left: 10px">Show particle trail</label>
+                            </div>
+                            <div style="padding:8px">
+                                <div class="dark-switch mdc-switch">
+                                    <div class="mdc-switch__track"></div>
+                                    <div class="mdc-switch__thumb-underlay">
+                                        <div class="mdc-switch__thumb">
+                                            <input type="checkbox" id="dark-switch" class="mdc-switch__native-control" role="switch">
+                                        </div>
+                                    </div>
+                                </div>
+                                <label for="dark-switch" style="margin-left: 10px">Dark mode</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <canvas id="canvas"></canvas>
+        <div id="chart-fab" class="mdc-fab app-fab--absolute">
+            <span class="mdc-fab__icon material-icons">multiline_chart</span>
+            <header class="hidden mdc-top-app-bar">
+                <div class="mdc-top-app-bar__row">
+                    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                        <a id="close-chart" class="material-icons mdc-top-app-bar__navigation-icon">close</a>
+                        <span class="mdc-top-app-bar__title">Relations</span>
+                    </section>
+                    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+                        <a id="chart-type" class="material-icons mdc-top-app-bar__action-item">bar_chart</a>
+                    </section>
+                </div>
+            </header>
+            <canvas id="chart" class="hidden"></canvas>
+        </div>
+    </body>
 </html>

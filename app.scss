@@ -1,0 +1,235 @@
+:root {
+    --mdc-theme-primary: #37474f;
+    --mdc-theme-secondary: #f9a825;
+    --mdc-theme-on-primary: #FFFFFF;
+    --mdc-theme-on-secondary: #37474f;
+    --mdc-theme-background: #F2F2F2;
+    --mdc-theme-surface: #FFFFFF;
+    --mdc-theme-on-surface: #000000;
+}
+
+$mdc-theme-primary: #37474f;
+$mdc-theme-secondary: #f9a825;
+$mdc-theme-on-primary: #FFFFFF;
+$mdc-theme-on-secondary:#37474f;
+$mdc-theme-background: #F2F2F2;
+$mdc-theme-surface: #FFFFFF;
+$mdc-theme-on-surface: #000000;
+
+@import "@material/animation/functions";
+@import "@material/button/mdc-button";
+@import "@material/slider/mdc-slider";
+@import "@material/layout-grid/mdc-layout-grid";
+@import "@material/typography/mdc-typography";
+@import "@material/tab-bar/mdc-tab-bar";
+@import "@material/tab-scroller/mdc-tab-scroller";
+@import "@material/tab-indicator/mdc-tab-indicator";
+@import "@material/tab/mdc-tab";
+@import "@material/icon-button/mdc-icon-button";
+@import "@material/radio/mdc-radio";
+@import "@material/form-field/mdc-form-field";
+@import "@material/switch/mdc-switch";
+@import "@material/list/mdc-list";
+@import "@material/chips/mdc-chips";
+@import "@material/fab/mdc-fab";
+@import "@material/card/mdc-card";
+@import "@material/top-app-bar/mdc-top-app-bar";
+
+* {
+    color: var(--mdc-theme-on-surface);
+    transition: color 175ms, background-color 175ms;
+}
+
+body {
+    background-color: var(--mdc-theme-background);
+    margin: 0;
+}
+
+p {
+    @include mdc-typography(body1);
+}
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#controls-card {
+    min-width: 100vw;
+    min-height: 232px;
+}
+
+.mdc-icon-button:disabled {
+    color: var(--mdc-theme-on-surface);
+    opacity: 0.38;
+}
+
+.mdc-icon-button::before, .mdc-icon-button::after {
+    background-color: var(--mdc-theme-on-surface);
+}
+
+.mdc-card {
+    position: relative;
+    z-index: 1;
+}
+
+.label {
+    opacity: .52;
+}
+
+.label::after {
+    padding-left: 0.25em;
+    content: attr(unit);
+}
+
+.mdc-top-app-bar__title {
+    color: var(--mdc-theme-on-primary);
+}
+
+.gas-options {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 175ms, transform 175ms;
+}
+
+.element-label {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+}
+
+.element-label p {
+    margin: 0;
+}
+
+.mdc-chip {
+    background-color: var(--mdc-theme-background);
+    border-radius: 0;
+    transform: skew(-15deg);
+}
+
+.mdc-chip__text {
+    transform: skew(15deg);
+}
+
+.mdc-chip--selected {
+    border: 1px solid;
+}
+
+#species-chip-he {
+    @include mdc-chip-selected-ink-color($mdc-theme-secondary);
+}
+
+#species-chip-ne {
+    @include mdc-chip-selected-ink-color(#DD2C00);
+}
+
+#species-chip-ar {
+    @include mdc-chip-selected-ink-color(#AA00FF);
+}
+
+#species-chip-kr {
+    @include mdc-chip-selected-ink-color(#2962FF);
+}
+
+#species-chip-xe {
+    @include mdc-chip-selected-ink-color(#40C4FF);
+}
+
+#species-chip-rn {
+    @include mdc-chip-selected-ink-color($mdc-theme-primary);
+}
+
+#species-list * {
+    text-align: center;
+}
+
+#species-list li span:last-child::after {
+    content: attr(element);
+    opacity: 0.52;
+    margin-left: 0.75em;
+    padding-left: 0.75em;
+    border-left: 1px solid;
+}
+
+.mdc-switch:not(.mdc-switch--checked) .mdc-switch__track {
+    background-color: var(--mdc-theme-on-surface);
+    border-color: var(--mdc-theme-on-surface);
+}
+
+.clearfix {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.app-fab--absolute {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+}
+
+@media(min-width: 1024px) {
+    .app-fab--absolute {
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+}
+
+.mdc-fab:before {
+    content: none;
+}
+
+.mdc-fab:after {
+    content: none;
+}
+
+.mdc-fab__icon {
+    color: var(--mdc-theme-on-secondary);
+    pointer-events: none;
+    transition: opacity 600ms;
+}
+
+#chart-fab {
+    will-change: transform, opacity, border-radius, width, height, background-color;
+    display: flex;
+    flex-direction: column;
+    transition: 600ms;
+    overflow: hidden;
+}
+
+#chart-fab * {
+    opacity: 1;
+    position: relative;
+    transition: opacity 600ms;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none           !important;
+    opacity: 0              !important;
+    will-change: opacity    !important;
+    transition: opacity 1200ms  !important;
+}
+
+@keyframes cardify {
+    from {
+        background-color: var(--mdc-theme-secondary, #F9AA33);
+        border-radius: 50%;
+    }
+    to {
+        background-color: #fff;
+        border-radius: 0;
+    }
+}
+
+#chart-fab-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+.gas-options {
+    display: none;
+}
