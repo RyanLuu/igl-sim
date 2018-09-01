@@ -3,7 +3,7 @@ import { isNullOrUndefined } from 'util';
 import { variables } from './data.js';
 let muted = false;
 
-let velocityScale = 0.1;
+let velocityScale = 0.07;
 let lengthScale = 0.02;
 
 var Element = {

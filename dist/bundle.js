@@ -2729,7 +2729,7 @@ var _data = __webpack_require__(6);
 
 var muted = false;
 
-var velocityScale = 0.1;
+var velocityScale = 0.07;
 var lengthScale = 0.02;
 
 var Element = {
