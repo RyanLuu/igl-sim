@@ -99,6 +99,13 @@ p {
     padding: 4px;
 }
 
+.element-label div:first-child {
+    width: 72px;
+    padding-right: 8px;
+    text-align: right;
+    border-right: 1px solid gray;
+}
+
 .element-label p {
     margin: 0;
 }
