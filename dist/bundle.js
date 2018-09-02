@@ -1688,6 +1688,9 @@ _data.options.addEventListener('set', function (evt) {
 
 function initChart(type) {
     var ctx = document.getElementById("chart").getContext("2d");
+    if (chart) {
+        chart.destroy();
+    }
     if (type == "line") {
         chart = new Chart(ctx, {
             // The type of chart we want to create
@@ -1795,7 +1798,6 @@ function updateHistogram(data) {
 }
 
 function addData(xVar, yVar, data) {
-
     // Clear data if one of the vars has changed
     if (currentXVar != xVar || currentYVar != yVar) {
         clearData();
@@ -6093,7 +6095,6 @@ document.querySelector('#chart-type').addEventListener('click', function (evt) {
         var w = Number(document.getElementById("chart-fab").clientWidth);
         a += Math.PI / 30;
         document.getElementById("chart").style.width = w * Math.cos(a);
-        console.log("hello?");
         if (a >= Math.PI / 2) {
             if (!flag) {
                 if (chartType == "line") {

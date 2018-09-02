@@ -309,7 +309,6 @@ document.querySelector('#chart-type').addEventListener('click', (evt) => {
         let w = Number(document.getElementById("chart-fab").clientWidth);
         a += Math.PI / 30;
         document.getElementById("chart").style.width = w * Math.cos(a);
-        console.log("hello?");
         if (a >= Math.PI / 2) {
             if (!flag) {
                 if (chartType == "line") {
