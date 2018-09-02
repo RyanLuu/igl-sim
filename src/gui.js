@@ -240,8 +240,6 @@ Array.from(document.getElementsByClassName('mdc-chip-set')).forEach(chipSetEl =>
     });
 });
 
-
-
 // DISPLAY OPTIONS \\
 
 const trailSwitchEl = document.querySelector('.trail-switch');
@@ -279,7 +277,9 @@ let card = false;
 document.getElementById('chart-fab').addEventListener('click', (evt) => {
     let fab = document.getElementById('chart-fab');
     if (!card) {
-        clearData();
+        if(variables.lineChart) {
+            clearData();
+        }
         card = true;
         fab.style.borderRadius = "0";
         fab.style.backgroundColor = "var(--mdc-theme-surface)";
@@ -303,15 +303,15 @@ window.addEventListener('resize', function(event) {
 
 let chartType = "line";
 document.querySelector('#chart-type').addEventListener('click', (evt) => {
-    let a = 0, b = false;
+    let a = 0, flag = false;
     tick();
     function tick() {
         let w = Number(document.getElementById("chart-fab").clientWidth);
-        a += Math.PI / 50;
+        a += Math.PI / 30;
         document.getElementById("chart").style.width = w * Math.cos(a);
         console.log("hello?");
         if (a >= Math.PI / 2) {
-            if (!b) {
+            if (!flag) {
                 if (chartType == "line") {
                     chartType = "bar";
                     options.lineChart = false;
@@ -323,7 +323,7 @@ document.querySelector('#chart-type').addEventListener('click', (evt) => {
                     evt.target.innerHTML = "bar_chart";
                     document.querySelector("#chart-fab span.mdc-top-app-bar__title").innerHTML = "Relations";
                 }
-                b = true;
+                flag = true;
             }
             document.getElementById("chart").style.width = -w * Math.cos(a);
         }
@@ -331,8 +331,7 @@ document.querySelector('#chart-type').addEventListener('click', (evt) => {
             requestAnimationFrame(tick);
         }
     }
-//     setTimeout(() => {
-// }, 1000);
+    document.getElementById("chart").style.width = Number(document.getElementById("chart-fab").clientWidth);
 });
 
 document.querySelector('#close-chart').addEventListener('click', (evt) => {
@@ -363,13 +362,13 @@ function updateCardSize() {
     let w = window.innerWidth;
     let h = window.innerHeight - document.getElementById("controls-card").clientHeight;
     
-    if (w*1.5 < h) { // portrait
+    if (w * 1.5 < h) { // portrait
         fab.style.width = (w - parseFloat(window.getComputedStyle(fab).right) * 2) + 'px';
         fab.style.height = fab.style.width;
     } else { // landscape
         fab.style.height = Math.min(
             w / 2 - parseFloat(window.getComputedStyle(fab).right) * 2,
             h - parseFloat(window.getComputedStyle(fab).bottom) * 2) + 'px';
-        fab.style.width = fab.style.height;//'calc(100vw / 3 - ' + parseFloat(window.getComputedStyle(fab).right) * 2 + 'px)';
+        fab.style.width = fab.style.height;
     }
 }
