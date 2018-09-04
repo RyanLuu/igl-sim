@@ -190,18 +190,6 @@ function updateMoles(i) {
         updateMoles(1, variables.moles1, variables.species1);
         updateMoles(2, variables.moles2, variables.species2);
     }
-
-    // var particlesPerMole = 10;
-    // var diff = particles[0].length - Math.ceil(data[0].moles * particlesPerMole);
-    // if (diff >= 0.5) {
-    //     for (var i = 0; i < diff; i++) {
-    //         particles[0].pop();
-    //     }
-    // } else if (diff <= -0.5) {
-    //     for (var i = 0; i > diff; i--) {
-    //         addParticle(0);
-    //     }
-    // }
 }
 
 function updateSpecies(i, sp) {

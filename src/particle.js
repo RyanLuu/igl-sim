@@ -1,7 +1,6 @@
 import { distance } from './util.js';
 import { isNullOrUndefined } from 'util';
 import { variables } from './data.js';
-let muted = false;
 
 let velocityScale = 0.05;
 let lengthScale = 0.02;
@@ -174,15 +173,9 @@ function Particle(x, y, species) {
 
         if (this.x - this.radius + this.dx * Particle.speedMultiplier < walls.left || this.x + this.radius + this.dx * Particle.speedMultiplier > walls.right) {
             this.dx *= -1;
-            if (!muted) {
-                // playNote(this.species, this.speed());
-            }
         }
         if (this.y - this.radius + this.dy * Particle.speedMultiplier < walls.top || this.y + this.radius + this.dy * Particle.speedMultiplier > walls.bottom) {
             this.dy *= -1;
-            if (!muted) {
-                // playNote(this.species, this.speed());
-            }
         }
     };
 }

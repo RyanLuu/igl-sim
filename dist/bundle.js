@@ -2603,18 +2603,6 @@ function updateMoles(i) {
         updateMoles(1, _data.variables.moles1, _data.variables.species1);
         updateMoles(2, _data.variables.moles2, _data.variables.species2);
     }
-
-    // var particlesPerMole = 10;
-    // var diff = particles[0].length - Math.ceil(data[0].moles * particlesPerMole);
-    // if (diff >= 0.5) {
-    //     for (var i = 0; i < diff; i++) {
-    //         particles[0].pop();
-    //     }
-    // } else if (diff <= -0.5) {
-    //     for (var i = 0; i > diff; i--) {
-    //         addParticle(0);
-    //     }
-    // }
 }
 
 function updateSpecies(i, sp) {
@@ -2728,8 +2716,6 @@ var _util = __webpack_require__(17);
 var _util2 = __webpack_require__(39);
 
 var _data = __webpack_require__(6);
-
-var muted = false;
 
 var velocityScale = 0.05;
 var lengthScale = 0.02;
@@ -2901,15 +2887,9 @@ function Particle(x, y, species) {
 
         if (this.x - this.radius + this.dx * Particle.speedMultiplier < walls.left || this.x + this.radius + this.dx * Particle.speedMultiplier > walls.right) {
             this.dx *= -1;
-            if (!muted) {
-                // playNote(this.species, this.speed());
-            }
         }
         if (this.y - this.radius + this.dy * Particle.speedMultiplier < walls.top || this.y + this.radius + this.dy * Particle.speedMultiplier > walls.bottom) {
             this.dy *= -1;
-            if (!muted) {
-                // playNote(this.species, this.speed());
-            }
         }
     };
 }
