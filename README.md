@@ -1,5 +1,5 @@
-# igl-sim
-An interactive simulation illustrating the ideal gas law.
+# The Ideal Gas Law Simulator
+An interactive simulation designed and built for teachers and students.
 
 ## Running Locally
 
