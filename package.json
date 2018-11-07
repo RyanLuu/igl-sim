@@ -1,7 +1,6 @@
 {
-  "name": "materialdesign",
+  "name": "igl-sim",
   "version": "1.0.0",
-  "main": "index.js",
   "dependencies": {
     "@material/button": "^0.38.0",
     "@material/card": "^0.38.0",
@@ -41,8 +40,8 @@
     "dev": "webpack-dev-server",
     "build": "webpack"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Ryan Luu",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RyanLuu/igl-sim.git"

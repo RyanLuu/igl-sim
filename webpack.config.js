@@ -1,13 +1,20 @@
 const autoprefixer = require('autoprefixer');
-var path = require('path');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: ['./app.scss', './src/main.js'],
+  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.min.js',
     publicPath: '/dist/'
   },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false }
+    })
+  ],
   devServer: {
     inline: true,
     port: 8080
