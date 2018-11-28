@@ -1,6 +1,8 @@
 # The Ideal Gas Law Simulator
 An interactive simulation designed and built for teachers and students.
 
+![Screenshot](/screenshot.png)
+
 ## Running Locally
 
 A pre-built version of the source is included in this repository. Simply open index.html in a web browser to run.
