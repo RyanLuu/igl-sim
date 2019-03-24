@@ -1817,7 +1817,7 @@
     opacity: 0;
     cursor: inherit;
     z-index: 1; }
-  .mdc-radio.mdc-ripple-upgraded .mdc-radio__background::before {
+  .mdc-radio.mdc-ripple-upgraded--background-focused .mdc-radio__background::before {
     content: none; }
 
 .mdc-radio__native-control:checked + .mdc-radio__background,
@@ -1861,7 +1861,7 @@
   transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
   transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
   transition: opacity 120ms 0ms cubic-bezier(0, 0, 0.2, 1), transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1), -webkit-transform 120ms 0ms cubic-bezier(0, 0, 0.2, 1);
-  opacity: .26; }
+  opacity: 0.12; }
 
 .mdc-form-field {
   font-family: Roboto, sans-serif;

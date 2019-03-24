@@ -3,11 +3,11 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: ['./app.scss', './src/main.js'],
+  entry: [ './app.scss', './src/main.js' ],
   devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.min.js',
+    filename: '.bundle.min.js',
     publicPath: '/dist/'
   },
   plugins: [
