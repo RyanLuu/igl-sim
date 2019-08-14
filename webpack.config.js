@@ -10,11 +10,6 @@ module.exports = {
     filename: '.bundle.min.js',
     publicPath: '/dist/'
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    })
-  ],
   devServer: {
     inline: true,
     port: 8080

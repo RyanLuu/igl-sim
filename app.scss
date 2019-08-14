@@ -1,11 +1,11 @@
 :root {
-    --mdc-theme-primary: #37474f;
-    --mdc-theme-secondary: #f9a825;
-    --mdc-theme-on-primary: #FFFFFF;
-    --mdc-theme-on-secondary: #37474f;
-    --mdc-theme-background: #F2F2F2;
-    --mdc-theme-surface: #FFFFFF;
-    --mdc-theme-on-surface: #000000;
+  --mdc-theme-primary: #37474f;
+  --mdc-theme-secondary: #f9a825;
+  --mdc-theme-on-primary: #FFFFFF;
+  --mdc-theme-on-secondary: #37474f;
+  --mdc-theme-background: #F2F2F2;
+  --mdc-theme-surface: #FFFFFF;
+  --mdc-theme-on-surface: #000000;
 }
 
 $mdc-theme-primary: #37474f;
@@ -36,207 +36,220 @@ $mdc-theme-on-surface: #000000;
 @import "@material/top-app-bar/mdc-top-app-bar";
 
 * {
-    color: var(--mdc-theme-on-surface);
-    transition: color 175ms, background-color 175ms;
+  color: var(--mdc-theme-on-surface);
+  transition: color 175ms, background-color 175ms;
 }
 
 body {
-    background-color: var(--mdc-theme-background);
-    margin: 0;
+  background-color: var(--mdc-theme-background);
+  margin: 0;
 }
 
 p {
-    @include mdc-typography(body1);
+  @include mdc-typography(body1);
 }
 
 #canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 #controls-card {
-    min-width: 100vw;
-    min-height: 232px;
+  min-width: 100vw;
+  min-height: 232px;
+}
+
+.mdc-icon-button:focus {
+  outline:none;
+}
+
+.mdc-icon-button::-moz-focus-inner {
+  border:0;
+}
+
+.mdc-icon-button:not(:focus) {
+  --mdc-ripple-fg-size: 0px !important;
+  --mdc-ripple-fg-scale: 0 !important;
 }
 
 .mdc-icon-button:disabled {
-    color: var(--mdc-theme-on-surface);
-    opacity: 0.38;
+  color: var(--mdc-theme-on-surface);
+  opacity: 0.38;
 }
 
 .mdc-icon-button::before, .mdc-icon-button::after {
-    background-color: var(--mdc-theme-on-surface);
+  background-color: var(--mdc-theme-on-surface);
 }
 
 .mdc-card {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .label {
-    opacity: .52;
+  opacity: .52;
 }
 
 .label::after {
-    padding-left: 0.25em;
-    content: attr(unit);
+  padding-left: 0.25em;
+  content: attr(unit);
 }
 
 .mdc-top-app-bar__title {
-    color: var(--mdc-theme-on-primary);
+  color: var(--mdc-theme-on-primary);
 }
 
 .gas-options {
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: opacity 175ms, transform 175ms;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 175ms, transform 175ms;
 }
 
 .element-label {
-    display: flex;
-    align-items: center;
-    padding: 4px;
+  display: flex;
+  align-items: center;
+  padding: 4px;
 }
 
 .element-label div:first-child {
-    width: 72px;
-    padding-right: 8px;
-    text-align: right;
-    border-right: 1px solid gray;
+  width: 72px;
+  padding-right: 8px;
+  text-align: right;
+  border-right: 1px solid gray;
 }
 
 .element-label p {
-    margin: 0;
+  margin: 0;
 }
 
 .mdc-chip {
-    background-color: var(--mdc-theme-background);
-    border-radius: 0;
-    transform: skew(-15deg);
+  background-color: var(--mdc-theme-background);
+  border-radius: 0;
+  transform: skew(-15deg);
 }
 
 .mdc-chip__text {
-    transform: skew(15deg);
+  transform: skew(15deg);
 }
 
 .mdc-chip--selected {
-    border: 1px solid;
+  border: 1px solid;
 }
 
 #species-chip-he {
-    @include mdc-chip-selected-ink-color($mdc-theme-secondary);
+  @include mdc-chip-selected-ink-color($mdc-theme-secondary);
 }
 
 #species-chip-ne {
-    @include mdc-chip-selected-ink-color(#DD2C00);
+  @include mdc-chip-selected-ink-color(#DD2C00);
 }
 
 #species-chip-ar {
-    @include mdc-chip-selected-ink-color(#AA00FF);
+  @include mdc-chip-selected-ink-color(#AA00FF);
 }
 
 #species-chip-kr {
-    @include mdc-chip-selected-ink-color(#2962FF);
+  @include mdc-chip-selected-ink-color(#2962FF);
 }
 
 #species-chip-xe {
-    @include mdc-chip-selected-ink-color(#40C4FF);
+  @include mdc-chip-selected-ink-color(#40C4FF);
 }
 
 #species-chip-rn {
-    @include mdc-chip-selected-ink-color($mdc-theme-primary);
+  @include mdc-chip-selected-ink-color($mdc-theme-primary);
 }
 
 #species-list * {
-    text-align: center;
+  text-align: center;
 }
 
 #species-list li span:last-child::after {
-    content: attr(element);
-    opacity: 0.52;
-    margin-left: 0.75em;
-    padding-left: 0.75em;
-    border-left: 1px solid;
+  content: attr(element);
+  opacity: 0.52;
+  margin-left: 0.75em;
+  padding-left: 0.75em;
+  border-left: 1px solid;
 }
 
 .mdc-switch:not(.mdc-switch--checked) .mdc-switch__track {
-    background-color: var(--mdc-theme-on-surface);
-    border-color: var(--mdc-theme-on-surface);
+  background-color: var(--mdc-theme-on-surface);
+  border-color: var(--mdc-theme-on-surface);
 }
 
 .clearfix {
-    content: "";
-    clear: both;
-    display: table;
+  content: "";
+  clear: both;
+  display: table;
 }
 
 .app-fab--absolute {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
 }
 
 @media(min-width: 1024px) {
-    .app-fab--absolute {
-        bottom: 1.5rem;
-        right: 1.5rem;
-    }
+  .app-fab--absolute {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
 }
 
 .mdc-fab:before {
-    content: none;
+  content: none;
 }
 
 .mdc-fab:after {
-    content: none;
+  content: none;
 }
 
 .mdc-fab__icon {
-    color: var(--mdc-theme-on-secondary);
-    pointer-events: none;
-    transition: opacity 600ms;
+  color: var(--mdc-theme-on-secondary);
+  pointer-events: none;
+  transition: opacity 600ms;
 }
 
 #chart-fab {
-    will-change: transform, opacity, border-radius, width, height, background-color;
-    display: flex;
-    flex-direction: column;
-    transition: 600ms;
-    overflow: hidden;
+  will-change: transform, opacity, border-radius, width, height, background-color;
+  display: flex;
+  flex-direction: column;
+  transition: 600ms;
+  overflow: hidden;
 }
 
 #chart-fab * {
-    opacity: 1;
-    position: relative;
-    transition: opacity 600ms;
-    overflow: hidden;
+  opacity: 1;
+  position: relative;
+  transition: opacity 600ms;
+  overflow: hidden;
 }
 
 .hidden {
-    display: none           !important;
-    opacity: 0              !important;
-    will-change: opacity    !important;
-    transition: opacity 1200ms  !important;
+  display: none           !important;
+  opacity: 0              !important;
+  will-change: opacity    !important;
+  transition: opacity 1200ms  !important;
 }
 
 @keyframes cardify {
-    from {
-        background-color: var(--mdc-theme-secondary, #F9AA33);
-        border-radius: 50%;
-    }
-    to {
-        background-color: #fff;
-        border-radius: 0;
-    }
+  from {
+    background-color: var(--mdc-theme-secondary, #F9AA33);
+    border-radius: 50%;
+  }
+  to {
+    background-color: #fff;
+    border-radius: 0;
+  }
 }
 
 #chart-fab-close {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 
 .gas-options {
-    display: none;
+  display: none;
 }
