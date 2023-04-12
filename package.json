@@ -20,7 +20,7 @@
     "@material/theme": "^0.38.0",
     "@material/top-app-bar": "^0.38.1",
     "@material/typography": "^0.38.0",
-    "css-loader": "^1.0.1",
+    "css-loader": "^6.7.3",
     "extract-loader": "^2.0.1",
     "file-loader": "^1.1.11",
     "node-sass": "^4.12.0",
