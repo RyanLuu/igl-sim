@@ -29,9 +29,9 @@ class Data {
 }
 
 var variables = new Data({
+    pressure: 1,
     temperature: 273.15,
     volume: 22.40,
-    pressure: 1,
     moles0: 1,
     moles1: 0,
     moles2: 0,

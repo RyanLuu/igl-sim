@@ -1,55 +1,41 @@
 {
+  "type": "module",
   "name": "igl-sim",
-  "version": "1.0.0",
-  "dependencies": {
-    "@material/button": "^0.38.1",
-    "@material/card": "^0.38.1",
-    "@material/chips": "^0.38.1",
-    "@material/drawer": "^0.38.0",
-    "@material/elevation": "^0.38.0",
-    "@material/fab": "^0.38.1",
-    "@material/form-field": "^0.38.1",
-    "@material/icon-button": "^0.38.1",
-    "@material/layout-grid": "^0.34.0",
-    "@material/list": "^0.38.1",
-    "@material/menu": "^0.38.0",
-    "@material/radio": "^0.38.1",
-    "@material/slider": "^0.38.0",
-    "@material/switch": "^0.38.1",
-    "@material/tab-bar": "^0.38.1",
-    "@material/theme": "^0.38.0",
-    "@material/top-app-bar": "^0.38.1",
-    "@material/typography": "^0.38.0",
-    "css-loader": "^1.0.1",
-    "extract-loader": "^2.0.1",
-    "file-loader": "^1.1.11",
-    "node-sass": "^8.0.0",
-    "sass-loader": "^7.2.0"
-  },
-  "devDependencies": {
-    "autoprefixer": "^9.6.1",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-preset-es2015": "^6.24.1",
-    "material-design-icons": "^3.0.1",
-    "postcss-loader": "^3.0.0",
-    "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^4.13.2"
-  },
+  "version": "2.0.0",
+  "description": "An interactive simulation designed and built for teachers and students.",
+  "main": "build/js/main.min.js",
   "scripts": {
-    "dev": "webpack-dev-server",
-    "build": "webpack"
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
+    "start": "serve",
+    "dev": "npm-run-all --parallel start watch"
   },
-  "author": "Ryan Luu",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RyanLuu/igl-sim.git"
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-terser": "^0.4.1",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^3.20.2",
+    "rollup-plugin-postcss": "^4.0.2",
+    "serve": "^14.2.0"
   },
-  "bugs": {
-    "url": "https://github.com/RyanLuu/igl-sim/issues"
-  },
-  "homepage": "https://github.com/RyanLuu/igl-sim#readme",
-  "description": ""
+  "dependencies": {
+    "@material/button": "^14.0.0",
+    "@material/card": "^14.0.0",
+    "@material/chips": "^14.0.0",
+    "@material/fab": "^14.0.0",
+    "@material/icon-button": "^14.0.0",
+    "@material/layout-grid": "^14.0.0",
+    "@material/list": "^14.0.0",
+    "@material/ripple": "^14.0.0",
+    "@material/slider": "^14.0.0",
+    "@material/switch": "^14.0.0",
+    "@material/tab-bar": "^14.0.0",
+    "@material/top-app-bar": "^14.0.0",
+    "@material/typography": "^14.0.0",
+    "is-what": "^4.1.8",
+    "sass": "^1.62.0"
+  }
 }
