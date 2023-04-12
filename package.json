@@ -35,7 +35,7 @@
     "postcss-loader": "^3.0.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.3"
+    "webpack-dev-server": "^4.13.2"
   },
   "scripts": {
     "dev": "webpack-dev-server",
