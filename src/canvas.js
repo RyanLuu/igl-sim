@@ -129,6 +129,7 @@ function draw() {
     let wallWidth = 8;
     ctx.shadowBlur=20;
     ctx.shadowColor="rgba(0,0,0,.38)";
+    ctx.beginPath();
     ctx.rect((-cylinder.width >> 1) - wallWidth, (-cylinder.height >> 1) - wallWidth, cylinder.width + wallWidth * 2, cylinder.height + wallWidth * 2);
     ctx.rect(walls.left, walls.top, walls.right - walls.left, walls.bottom - walls.top);
     ctx.fill('evenodd');
