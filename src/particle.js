@@ -1,5 +1,5 @@
 import { distance } from './util.js';
-import { isNullOrUndefined } from 'util';
+import { isNullOrUndefined } from 'is-what';
 import { variables } from './data.js';
 
 let velocityScale = 0.05;

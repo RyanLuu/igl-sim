@@ -1,3 +1,28 @@
+@use "@material/animation";
+@use "@material/button";
+@use "@material/button/styles" as button-styles;
+@use "@material/slider/styles" as slider;
+@use "@material/layout-grid/mdc-layout-grid";
+@use "@material/typography";
+@use "@material/tab-bar/mdc-tab-bar";
+@use "@material/tab-scroller/mdc-tab-scroller";
+@use "@material/tab-indicator/mdc-tab-indicator";
+@use "@material/tab/mdc-tab";
+@use "@material/icon-button";
+@use "@material/icon-button/styles" as icon-button-styles;
+@use "@material/switch/styles" as switch;
+@use "@material/list/evolution-mixins"as list-evolution-mixins;
+@use "@material/chips";
+@use "@material/chips/styles" as chips-styles;
+@use "@material/fab";
+@use "@material/card";
+@use "@material/top-app-bar/mdc-top-app-bar";
+
+@include fab.core-styles;
+@include card.core-styles;
+@include typography.core-styles;
+@include list-evolution-mixins.core-styles();
+
 :root {
   --mdc-theme-primary: #37474f;
   --mdc-theme-secondary: #f9a825;
@@ -16,25 +41,6 @@ $mdc-theme-background: #F2F2F2;
 $mdc-theme-surface: #FFFFFF;
 $mdc-theme-on-surface: #000000;
 
-@import "@material/animation/functions";
-@import "@material/button/mdc-button";
-@import "@material/slider/mdc-slider";
-@import "@material/layout-grid/mdc-layout-grid";
-@import "@material/typography/mdc-typography";
-@import "@material/tab-bar/mdc-tab-bar";
-@import "@material/tab-scroller/mdc-tab-scroller";
-@import "@material/tab-indicator/mdc-tab-indicator";
-@import "@material/tab/mdc-tab";
-@import "@material/icon-button/mdc-icon-button";
-@import "@material/radio/mdc-radio";
-@import "@material/form-field/mdc-form-field";
-@import "@material/switch/mdc-switch";
-@import "@material/list/mdc-list";
-@import "@material/chips/mdc-chips";
-@import "@material/fab/mdc-fab";
-@import "@material/card/mdc-card";
-@import "@material/top-app-bar/mdc-top-app-bar";
-
 * {
   color: var(--mdc-theme-on-surface);
   transition: color 175ms, background-color 175ms;
@@ -46,7 +52,7 @@ body {
 }
 
 p {
-  @include mdc-typography(body1);
+  @include typography.typography(body1);
 }
 
 #canvas {
@@ -123,49 +129,45 @@ p {
   margin: 0;
 }
 
-.mdc-chip {
-  background-color: var(--mdc-theme-background);
-  border-radius: 0;
-  transform: skew(-15deg);
-}
-
-.mdc-chip__text {
-  transform: skew(15deg);
-}
-
-.mdc-chip--selected {
-  border: 1px solid;
-}
-
 #species-chip-he {
-  @include mdc-chip-selected-ink-color($mdc-theme-secondary);
+  @include chips.selected-container-color($mdc-theme-secondary);
 }
 
 #species-chip-ne {
-  @include mdc-chip-selected-ink-color(#DD2C00);
+  @include chips.selected-container-color(#DD2C00);
 }
 
 #species-chip-ar {
-  @include mdc-chip-selected-ink-color(#AA00FF);
+  @include chips.selected-container-color(#AA00FF);
 }
 
 #species-chip-kr {
-  @include mdc-chip-selected-ink-color(#2962FF);
+  @include chips.selected-container-color(#2962FF);
 }
 
 #species-chip-xe {
-  @include mdc-chip-selected-ink-color(#40C4FF);
+  @include chips.selected-container-color(#40C4FF);
 }
 
 #species-chip-rn {
-  @include mdc-chip-selected-ink-color($mdc-theme-primary);
+  @include chips.selected-container-color($mdc-theme-primary);
 }
 
-#species-list * {
-  text-align: center;
+#species-list .mdc-list-item__text {
+  display: flex;
+  align-items: flex-end;
+  padding: 6px;
 }
 
-#species-list li span:last-child::after {
+#species-list .mdc-list-item__graphic {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#species-list .species-label::after {
   content: attr(element);
   opacity: 0.52;
   margin-left: 0.75em;
